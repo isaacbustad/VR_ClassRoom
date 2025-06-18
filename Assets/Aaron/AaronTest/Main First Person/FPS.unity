@@ -1273,8 +1273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 210345093}
   roomGenerator: {fileID: 1841852563}
-  placableItemPlacer: {fileID: 1841852561}
-  placableItemRemover: {fileID: 1841852564}
+  itemPlacer: {fileID: 1841852561}
+  itemRemover: {fileID: 1841852564}
 --- !u!114 &210345097
 MonoBehaviour:
   m_ObjectHideFlags: 0

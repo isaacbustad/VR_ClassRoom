@@ -1,9 +1,9 @@
-using BugFreeProductions.Tools;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Oculus.Interaction.Context;
 
+/// <summary>
+/// Singleton manager class that can be accessed from anywhere in the application.
+/// Designed to persist across scene loads and provide centralized access to scene-related functionality.
+/// </summary>
 public class StaticSceneManager : MonoBehaviour
 {
     private static StaticSceneManager instance = null;

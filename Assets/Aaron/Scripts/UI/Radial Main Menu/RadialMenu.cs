@@ -1,12 +1,13 @@
 // Written by Aaron Williams
-using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+/// <summary>
+/// Controls a radial menu that allows users to select options by pointing the mouse pointer
+/// or their VR controller at different segments.
+/// </summary>
 public class RadialMenu : MonoBehaviour
 {
     [Header("Is In Virtual Reality")]
@@ -59,26 +60,30 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    // TODO: evntually it would be good to make these assignments programatically. Leaving here for reference still in case the inspector breaks
     // Old method, left for now, so we can see what methods are assigned to what buttons in case the inspector breaks
-        //private void HandleVRInput()
-        //{
-        //
-        //    if (OVRInput.GetDown(selectOptionButton, ovrController))
-        //    {
-        //        EnableRadialMenu();
-        //    }
+    //private void HandleVRInput()
+    //{
+    //
+    //    if (OVRInput.GetDown(selectOptionButton, ovrController))
+    //    {
+    //        EnableRadialMenu();
+    //    }
 
-        //    if (OVRInput.Get(selectOptionButton, ovrController))
-        //    {
-        //        GetSelectedRadialPart();
-        //    }
+    //    if (OVRInput.Get(selectOptionButton, ovrController))
+    //    {
+    //        GetSelectedRadialPart();
+    //    }
 
-        //    if (OVRInput.GetUp(selectOptionButton, ovrController))
-        //    {
-        //        SelectMenuOption();
-        //    }
-        //}
+    //    if (OVRInput.GetUp(selectOptionButton, ovrController))
+    //    {
+    //        SelectMenuOption();
+    //    }
+    //}
 
+    /// <summary>
+    /// Toggle the radial menu visibility for keyboard and mouse
+    /// </summary>
     public void HandleToggleRadialMenuKBM()
     {
         if (!menuCanvas.gameObject.activeInHierarchy)
@@ -91,6 +96,9 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Create and initialize the radial menu segments
+    /// </summary>
     private void InitializeRadialMenu()
     {
         if (isVR)
@@ -131,6 +139,9 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Determines which menu option is currently being selected based on pointer/controller location about the menu.
+    /// </summary>
     public void GetSelectedRadialPart()
     {
         Vector3 selectionPoint;
@@ -179,6 +190,9 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Execute the action for the currently selected menu option
+    /// </summary>
     public void SelectMenuOption()
     {
         radialMenuOption[selectedMenuOptionIndex].SetActive(true);
@@ -194,6 +208,9 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Show the radial menu and position it. Different positioning for VR and keyboard/mouse.
+    /// </summary>
     public void EnableRadialMenu()
     {
         if(!isVR)
@@ -219,12 +236,16 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
+    // <summary>
+    /// Hide the radial menu and restore previous input state
+    /// </summary>
+    /// <param name="selectedNewMenu">Whether a new menu was selected (affects input handling)</param>
     public void DisableRadialMenu(bool selectedNewMenu)
     {
         if (!isVR && !selectedNewMenu)
         {
             UIUtils.DisableUILock();
-            InputMapManager.Instance.OnCloseRadialMenuUI();
+            InputMapManager.Instance.OnCloseMenuUI();
         }
         else if (isVR)
         {
@@ -233,16 +254,26 @@ public class RadialMenu : MonoBehaviour
         menuCanvas.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Get the appropriate transform for input based on VR/non-VR mode
+    /// </summary>
     private Transform GetTransform()
     {
         return isVR? handTransform : mainCamera.transform;
     }
+
+    /// <summary>
+    /// Get the appropriate distance offset for menu placement based on VR/non-VR mode
+    /// </summary>
     private float GetDistanceOffset()
     {
         return isVR ? menuDistanceOffset : kbmMenuDistanceOffset;
     }
 }
 
+/// <summary>
+/// Represents a selectable option in the radial menu with an associated action
+/// </summary>
 [System.Serializable]
 public class MenuOption
 {
