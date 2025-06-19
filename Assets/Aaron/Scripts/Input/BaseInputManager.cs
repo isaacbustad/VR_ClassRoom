@@ -10,6 +10,7 @@ public abstract class BaseInputManager : MonoBehaviour
     protected static BaseInputManager instance = null;
 
     /// <summary>Current active input mode</summary>
+    [SerializeField]
     protected InputMode currentMode = InputMode.Default;
 
     /// <summary>Previously active input mode, used when temporarily switching modes</summary>
@@ -61,7 +62,7 @@ public abstract class BaseInputManager : MonoBehaviour
     /// </summary>
     /// /// <param name="newMode">The mode to switch to</param>
     /// <param name="isTemporary">Whether this is a temporary mode change (e.g. for UI)</param>
-    public abstract void SwitchToMode(InputMode newMode, bool isTemporary = false);
+    public abstract void SwitchToMode(InputMode newMode, bool isFromRadialMenu = false);
 
     /// <summary>
     /// Applies the effects of switching to a mode (enabling/disabling components, etc.)
@@ -74,11 +75,16 @@ public abstract class BaseInputManager : MonoBehaviour
     /// </summary>
     /// <param name="newMode">The mode to switch to</param>
     /// <param name="isTemporary">Whether this is a temporary mode change</param>
-    protected void HandleModeSwitch(InputMode newMode, bool isTemporary = false)
+    protected void HandleModeSwitch(InputMode newMode, bool isFromRadialMenu = false)
     {
-        if (!isTemporary)
+        if (isFromRadialMenu)
         {
             previousMode = currentMode;
+        }
+        else
+        {
+            currentMode = newMode;
+            previousMode = newMode;
         }
 
         currentMode = newMode;
@@ -120,7 +126,6 @@ public abstract class BaseInputManager : MonoBehaviour
         if (component != null)
         {
             component.enabled = enabled;
-            Debug.Log($"{component.GetType().Name} has been {(enabled ? "enabled" : "disabled")}.");
         }
     }
 

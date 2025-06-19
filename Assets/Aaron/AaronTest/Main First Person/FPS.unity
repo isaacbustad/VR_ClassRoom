@@ -1271,6 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cb7d826a846a74aa56c40047c2ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMode: 0
   playerInput: {fileID: 210345093}
   roomGenerator: {fileID: 1841852563}
   itemPlacer: {fileID: 1841852561}

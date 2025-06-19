@@ -47,19 +47,25 @@ public class InputMapManager : BaseInputManager
     /// </summary>
     protected override void InitializeComponents()
     {
-        base.InitializeComponents();
-
         if (playerInput == null)
+        {
             playerInput = GetComponent<PlayerInput>();
+        }
 
         if (roomGenerator == null)
+        {
             roomGenerator = FindObjectOfType<RoomGenerator>();
+        }
 
         if (itemPlacer == null)
+        {
             itemPlacer = FindObjectOfType<PlacableItemPlacer>();
+        }
 
         if (itemRemover == null)
+        {
             itemRemover = FindObjectOfType<PlacableItemRemover>();
+        }
     }
 
     /// <summary>
@@ -67,9 +73,9 @@ public class InputMapManager : BaseInputManager
     /// </summary>
     /// <param name="newMode">The mode to switch to</param>
     /// <param name="isTemporary">Whether this is a temporary mode change</param>
-    public override void SwitchToMode(InputMode newMode, bool isTemporary = false)
+    public override void SwitchToMode(InputMode newMode, bool isFromRadialMenu = false)
     {
-        HandleModeSwitch(newMode, isTemporary);
+        HandleModeSwitch(newMode, isFromRadialMenu);
     }
 
     /// <summary>
@@ -130,7 +136,7 @@ public class InputMapManager : BaseInputManager
     }
 
     #region Legacy Method Wrappers
-    // Keep these for backward compatibility
+    // Keep these for backward compatibility, so we don't have to change existing method calls in the editor
     /// <summary>
     /// Switches to default mode (backward compatibility)
     /// </summary>
@@ -138,14 +144,14 @@ public class InputMapManager : BaseInputManager
     /// <summary>
     /// Switches to room creation mode (backward compatibility)
     /// </summary>
-    public void SwitchToRoomCreationActionMap() => SwitchToMode(InputMode.RoomCreation, true);
+    public void SwitchToRoomCreationActionMap() => SwitchToMode(InputMode.RoomCreation, false);
     /// <summary>
     /// Switches to item placement mode (backward compatibility)
     /// </summary>
-    public void SwitchToItemPlacementActionMap() => SwitchToMode(InputMode.ItemPlacement, true);
+    public void SwitchToItemPlacementActionMap() => SwitchToMode(InputMode.ItemPlacement, false);
     /// <summary>
     /// Switches to catalog menu mode (backward compatibility)
     /// </summary>
-    public void SwitchToCatalogMenuActionMap() => SwitchToMode(InputMode.CatalogMenu, true);
+    public void SwitchToCatalogMenuActionMap() => SwitchToMode(InputMode.CatalogMenu, false);
     #endregion
 }
