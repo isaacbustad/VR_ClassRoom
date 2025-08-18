@@ -1271,10 +1271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cb7d826a846a74aa56c40047c2ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMode: 0
   playerInput: {fileID: 210345093}
   roomGenerator: {fileID: 1841852563}
-  placableItemPlacer: {fileID: 1841852561}
-  placableItemRemover: {fileID: 1841852564}
+  itemPlacer: {fileID: 1841852561}
+  itemRemover: {fileID: 1841852564}
 --- !u!114 &210345097
 MonoBehaviour:
   m_ObjectHideFlags: 0

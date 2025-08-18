@@ -1,17 +1,23 @@
 // Written by Aaron Williams
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO integrate this with the player controller or something, as of now this is for testing.
+/// <summary>
+/// Testing controller for catalog menu functionality.
+/// Handles toggling and positioning of the item catalog menu in response to input.
+/// </summary>
 public class MenuController : MonoBehaviour
 {
     public GameObject menu;
     public Transform playerTransform;
     public GameObject rightHand;
 
+
+    /// <summary>
+    /// Toggles the item catalog menu visibility and position based on input.
+    /// Positions the menu in front of the player and handles cursor visibility.
+    /// </summary>
+    /// <param name="context">Input action callback context</param>
     public void ToggleItemCatalogMenu(InputAction.CallbackContext context)
     {
         if (context.canceled)
@@ -38,3 +44,4 @@ public class MenuController : MonoBehaviour
         }
     }
 }
+// TODO integrate this with the player controller or something, as of now this is for testing.

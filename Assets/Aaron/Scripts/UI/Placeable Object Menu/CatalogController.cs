@@ -2,11 +2,13 @@
 using BugFreeProductions.Tools;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls the catalog UI for placeable objects with category filtering and item selection.
+/// Handles different behaviors for VR and non-VR environments.
+/// </summary>
 public class CatalogController : MonoBehaviour
 {
     [SerializeField]
@@ -54,6 +56,9 @@ public class CatalogController : MonoBehaviour
         UpdateCatalog();
     }
 
+    /// <summary>
+    /// Loads and instantiates all filter toggle buttons (CategorySO) from the CATEGORIES_FOLDER within Resources.
+    /// </summary>
     private void LoadFilterToggles()
     {
         categoryToggles.Clear();
@@ -75,6 +80,9 @@ public class CatalogController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads and instantiates all catalog item buttons (ItemSO) from the ITEM_FOLDER within Resources.
+    /// </summary>
     private void LoadItems()
     {
         allItems.Clear();
@@ -92,6 +100,9 @@ public class CatalogController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates which catalog items are visible based on active category filters
+    /// </summary>
     private void UpdateCatalog()
     {
         foreach (CatalogItemData item in allItems)
@@ -109,6 +120,10 @@ public class CatalogController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the selected item to be placed when a catalog item is clicked
+    /// </summary>
+    /// <param name="catalogButton">The catalog button GameObject that was clicked</param>
     private void SelectObjectToPlace(GameObject catalogButton)
     {
         if(isVR)
@@ -121,6 +136,9 @@ public class CatalogController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles the visibility of the catalog menu with appropriate positioning and input handling
+    /// </summary>
     public void ToggleMenu()
     {
         if (!canvasTransform.gameObject.activeInHierarchy)

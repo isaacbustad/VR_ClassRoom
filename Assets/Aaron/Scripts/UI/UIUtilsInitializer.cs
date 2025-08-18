@@ -1,14 +1,19 @@
 // Written by Aaron Williams
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Initializes the UIUtils static references on startup.
+/// Provides error checking and feedback for missing references.
+/// </summary>
 public class UIUtilsInitializer : MonoBehaviour
 {
     [SerializeField] private PlayerMoveContext playerMoveContext;
     [SerializeField] private PlayerCamMannager playerCameraManager;
     [SerializeField] private RadialMenu playerRadialMenu;
 
+    /// <summary>
+    /// Initializes all references in the UIUtils static class on startup
+    /// </summary>
     private void Start()
     {
         if(playerMoveContext != null)

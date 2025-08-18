@@ -2,21 +2,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Temporary utility that enables mouse interaction with world space UI elements.
+/// Uses raycasting to detect UI elements in the scene and forwards click events to them.
+/// </summary>
 public class TempWorldSpaceUIClick : MonoBehaviour
 {
+    /// <summary>
+    /// Check for mouse clicks each frame and forward them to world space UI elements
+    /// </summary>
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Left mouse click
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Check if we hit a UI element
                 if (hit.collider.gameObject.GetComponent<CanvasRenderer>() != null)
                 {
-                    // Simulate a UI click
                     PointerEventData pointer = new PointerEventData(EventSystem.current);
                     pointer.position = Input.mousePosition;
 
