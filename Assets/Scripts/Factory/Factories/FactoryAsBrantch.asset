@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bffdd1e7913d44e8678daee3a84f4b, type: 3}
+  m_Name: FactoryAsBrantch
+  m_EditorClassIdentifier: 
+  factoryItem: {fileID: 0}
+  factoryItems:
+  - {fileID: 9217609688440255084, guid: e64ab0f70fb1d3043894d72c740000cc, type: 3}
+  - {fileID: 4747423611790198303, guid: fa287640c2e125346b271abc7ba0bd2c, type: 3}
+  - {fileID: 4747423611790198303, guid: 1f54523d89bdf2344a7633751e7ebcba, type: 3}

@@ -68,8 +68,25 @@ namespace BugFreeProductions.Tools
 
         public virtual void CreateItem(ref FactoryItem aFI, ObjectPlacement aPlacement)
         {
-            
-            // create new item
+            // check if item is in this factory's item list
+            if (ItemID == aPlacement.id)
+            {
+                // create new item
+                GameObject nGO = Instantiate(factoryItem, Vector3.zero, Quaternion.identity);
+                FactoryItem fi = nGO.GetComponent<FactoryItem>();
+
+                if (fi != null)
+                {
+                    fi.UseFactoryItem(aPlacement, pool);
+                    aFI = fi;
+                    if (fi.ID == JSONPlacementMannager.Instance.RoomID)
+                    {
+                        JSONPlacementMannager.Instance.Pool = pool;
+                    }
+                }
+            }
+
+           /* // create new item
             GameObject nGO = Instantiate(factoryItem, Vector3.zero, Quaternion.identity);
             FactoryItem fi = nGO.GetComponent<FactoryItem>();
 
@@ -81,7 +98,7 @@ namespace BugFreeProductions.Tools
                 {
                     JSONPlacementMannager.Instance.Pool = pool;
                 }
-            }
+            }*/
         }
 
         #endregion

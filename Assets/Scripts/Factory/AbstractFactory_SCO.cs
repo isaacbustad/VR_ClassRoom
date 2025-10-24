@@ -18,6 +18,7 @@ namespace BugFreeProductions.Tools
 
         #region Factory Item Creation
         // Methods
+        // change to check item ID in the factory
         public virtual void CreateItem(Transform aTF , string aID)
         {
             // hold id to search for
@@ -43,7 +44,7 @@ namespace BugFreeProductions.Tools
 
         }
 
-        public virtual void CreateItem(ObjectPlacement aPlacement)
+        /*public virtual void CreateItem(ObjectPlacement aPlacement)
         {
             // hold id to search for
             string srchString = aPlacement.id;
@@ -65,7 +66,7 @@ namespace BugFreeProductions.Tools
 
             }
 
-        }
+        }*/
 
         public virtual void CreateItem(ref FactoryItem aFI, ObjectPlacement aPlacement)
         {
@@ -78,14 +79,16 @@ namespace BugFreeProductions.Tools
 
             foreach (GenericFactory_SCO gf in genericFactory_SCOs)
             {
-                // change ID we check against
+                /*// change ID we check against
                 factID = gf.ItemID;
 
                 // check Against search id
                 if (srchString == factID)
                 {
                     gf.CreateItem(ref aFI, aPlacement);
-                }
+                }*/
+
+                gf.CreateItem(ref aFI, aPlacement);
 
                 /*if (aFI != null && aFI.ID == JSONPlacementMannager.Instance.RoomID)
                 {
@@ -95,6 +98,7 @@ namespace BugFreeProductions.Tools
             }
         }
 
+        // for later advanced placement
         public virtual void CreateItem(ObjectPlacement aPlacement, int aLayer)
         {
             // hold id to search for
@@ -147,7 +151,7 @@ namespace BugFreeProductions.Tools
             return retLst;
         }
 
-        public virtual ObjectPlacementList GatherFactItemPosInfo(ref ObjectPlacementList aRoomPointLST)
+        /*public virtual ObjectPlacementList GatherFactItemPosInfo(ref ObjectPlacementList aRoomPointLST)
         {
             ObjectPlacementList retLst = new ObjectPlacementList();
 
@@ -174,10 +178,10 @@ namespace BugFreeProductions.Tools
                         totalRoomPoints.Add(op);
                     }
                 }
-                /*foreach (ObjectPlacement op in nl)
+                *//*foreach (ObjectPlacement op in nl)
                 {
                     totalObjPlacs.Add(op);
-                }*/
+                }*//*
             }
 
             aRoomPointLST.objectPlacements = totalObjPlacs.ToArray();
@@ -186,7 +190,7 @@ namespace BugFreeProductions.Tools
 
 
             return retLst;
-        }
+        }*/
         #endregion
 
     }
