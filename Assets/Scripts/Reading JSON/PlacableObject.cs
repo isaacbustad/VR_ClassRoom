@@ -14,7 +14,7 @@ namespace BugFreeProductions.Tools
         // id standing for particular prefab
         //[SerializeField] protected string id = "NA";
 
-        // wher to place object
+        // where to place object
         protected ObjectPlacement placement;
 
         // represent transform position and rotation in Vector3s

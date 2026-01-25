@@ -19,7 +19,8 @@ namespace BugFreeProductions.Tools
         protected GenericPool pool = new GenericPool();
 
 
-        // Methods
+        #region Methods
+        
         #region Create Factory Items
         public virtual void CreateItem(Transform createInfo)
         {
@@ -120,12 +121,16 @@ namespace BugFreeProductions.Tools
         }
 
         #endregion
-
+        #endregion
         // Accessors
         public virtual string ItemID { get { return factoryItem.GetComponent<FactoryItem>().ID; } }
 
         public virtual GenericPool Pool { get { return pool; } }
 
+        #region Accessors
+        // Access to pooled items
+        public virtual List<Poolable> PooledItems { get { return pool.PoolList; } }
+        #endregion
 
     }
 }

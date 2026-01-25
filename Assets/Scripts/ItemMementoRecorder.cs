@@ -7,38 +7,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// records a memento of a game object
-public class ItemMementoRecorder : MonoBehaviour
+namespace BugFreeProductions.Tools
 {
-    #region Vars
-    // hold the recording of all mementos
-    protected List<ItemMemento> mementos = new List<ItemMemento>();
-
-    // hold the start time of recording / 
-    protected float startTime = 0;
-
-    // hold path
-    protected string recordPath = "/record/test";
-
-    #endregion
-
-
-    #region Methods
-    public ItemMemento RecordMemento()
+    // records a memento of a game object
+    public class ItemMementoRecorder : MonoBehaviour
     {
-        ItemMemento itemMemento = new ItemMemento();
+        #region Vars
         
-        // get a ObjectPlacement to base the memento on
-        GetComponent<PlacableFactoryItem>().ObjectPlacement();
 
-        return itemMemento;
+        #endregion
+
+
+        #region Methods
+        public ItemMemento RecordMemento()
+        {
+            
+            
+            // get a ObjectPlacement to base the memento on
+            ObjectPlacement objP = GetComponent<PlacableFactoryItem>().ObjectPlacement();
+
+            // create the memento
+            ItemMemento itemMemento = new ItemMemento(objP);
+
+            // add to manager
+            //ItemMementoManager.Instance.AddMemento(itemMemento);
+
+            // return it to caller
+            return itemMemento;
+        }
+        #endregion
+
+
+        #region Accessors
+
+        #endregion
+
+
     }
-    #endregion
-
-
-    #region Accessors
-
-    #endregion
-
-
 }

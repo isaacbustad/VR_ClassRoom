@@ -12,10 +12,13 @@ namespace BugFreeProductions.Tools
     [CreateAssetMenu(fileName = "AbstractFactory_SCO", menuName = "ScriptableObject/AbstractFactory_SCO")]
     public class AbstractFactory_SCO : ScriptableObject
     {
-        // Vars
+        #region Vars
         [SerializeField, Header("Factories run"), Tooltip("List of Generic Factories This Abstract Factory is responsible for running")] 
         List<GenericFactory_SCO> genericFactory_SCOs = new List<GenericFactory_SCO>();
+        #endregion
 
+
+        # region Methods
         #region Factory Item Creation
         // Methods
         // change to check item ID in the factory
@@ -79,21 +82,11 @@ namespace BugFreeProductions.Tools
 
             foreach (GenericFactory_SCO gf in genericFactory_SCOs)
             {
-                /*// change ID we check against
-                factID = gf.ItemID;
-
-                // check Against search id
-                if (srchString == factID)
-                {
-                    gf.CreateItem(ref aFI, aPlacement);
-                }*/
+                
 
                 gf.CreateItem(ref aFI, aPlacement);
 
-                /*if (aFI != null && aFI.ID == JSONPlacementMannager.Instance.RoomID)
-                {
-                    JSONPlacementMannager.Instance.Pool = gf.Pool;
-                }*/
+                
 
             }
         }
@@ -151,47 +144,28 @@ namespace BugFreeProductions.Tools
             return retLst;
         }
 
-        /*public virtual ObjectPlacementList GatherFactItemPosInfo(ref ObjectPlacementList aRoomPointLST)
-        {
-            ObjectPlacementList retLst = new ObjectPlacementList();
-
-            // for the items placed in the room
-            List<ObjectPlacement> totalObjPlacs = new List<ObjectPlacement>();
-
-            // for room drawing points
-            List<ObjectPlacement> totalRoomPoints = new List<ObjectPlacement>();
-
-            foreach (GenericFactory_SCO gf in genericFactory_SCOs)
-            {
-                List<ObjectPlacement> nl = gf.GatherFactItemPosInfo();
-                if (gf.ItemID != "Room")
-                {
-                    foreach (ObjectPlacement op in nl)
-                    {
-                        totalObjPlacs.Add(op);
-                    }
-                }
-                else
-                {
-                    foreach (ObjectPlacement op in nl)
-                    {
-                        totalRoomPoints.Add(op);
-                    }
-                }
-                *//*foreach (ObjectPlacement op in nl)
-                {
-                    totalObjPlacs.Add(op);
-                }*//*
-            }
-
-            aRoomPointLST.objectPlacements = totalObjPlacs.ToArray();
-
-            retLst.objectPlacements = totalObjPlacs.ToArray();
-
-
-            return retLst;
-        }*/
+        
         #endregion
 
+        #endregion
+    
+        #region Accessors
+        // Access to pooled items
+        
+        public virtual List<Poolable> PooledItems
+        {
+            get
+            {
+                List<Poolable> retList = new List<Poolable>();
+                foreach (GenericFactory_SCO gf in genericFactory_SCOs)
+                {
+                    retList.AddRange(gf.PooledItems);
+                }
+                return retList;
+            }
+            
+        }
+
+        #endregion
     }
 }

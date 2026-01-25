@@ -14,19 +14,19 @@ namespace BugFreeProductions.Tools
     public class JSONPlacementMannager : MonoBehaviour
     {
         // Vars
-        // Singaton instance
+        // Singelten instance
         private static JSONPlacementMannager instance = null;
 
-        // factory Refferences
+        // factory References
         [SerializeField] private AbstractFactory_SCO abf_SCO = null;
 
-        // pathing varriables
+        // pathing variables
         [SerializeField] private string roomConfigPath = "N/A";
         private string objectPlacementPath = "ObjectPlacements.json";
         private string roomPlacementPath = "RoomPointPlacements.json";
         private string roomNamePath = "RoomNames.json";
 
-        // not a room refference
+        // not a room reference
         private string notRoom = "N/A";
 
 
@@ -60,7 +60,7 @@ namespace BugFreeProductions.Tools
         // onScene change
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            ReadRoomConfif();
+            ReadRoomConfig();
         }
 
         // remove from delegate on destroy
@@ -69,7 +69,7 @@ namespace BugFreeProductions.Tools
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
         #region Room Saving
-        public void ReadRoomConfif()
+        public void ReadRoomConfig()
         {
             if (roomConfigPath != notRoom)
             {
@@ -87,35 +87,14 @@ namespace BugFreeProductions.Tools
         }
         
 
-        /*public void AddRoom(string aString)
-        {
-            JSONRoomList rooms = JsonUtility.FromJson<JSONRoomList>(CustomGatewayJSON.Instance.ReadJsonFile("/" + roomNamePath));
-
-            if (rooms.roomsLST.Contains(aString) == false)
-            {
-                List<string> nRoomLST = new List<string>();
-                
-                foreach (string n in rooms.roomsLST)
-                {
-                    nRoomLST.Add(n);
-                }
-                nRoomLST.Add((aString));
-
-                rooms.roomsLST = nRoomLST.ToArray();
-            }
-        }*/
+        
 
         #endregion
 
         
 
-
-
-
-
-
         // Accessors
-        // Singalton Accesseors
+        // Singelten Accessors
         public static JSONPlacementMannager Instance
         {
             get
