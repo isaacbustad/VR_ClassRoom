@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 857242620011642341}
   - component: {fileID: 5099876502608371226}
   - component: {fileID: 6351527764620423213}
+  - component: {fileID: 5171200868588469763}
   m_Layer: 0
   m_Name: RoundTable
   m_TagString: Untagged
@@ -164,6 +165,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yBuff: 0.001
+--- !u!114 &5171200868588469763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747423611790198303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de293c96cac008c479c2b7545bae0edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8274270403207298709
 GameObject:
   m_ObjectHideFlags: 0

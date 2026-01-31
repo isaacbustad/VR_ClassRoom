@@ -14,6 +14,12 @@ namespace BugFreeProductions.Tools
     public class ItemMementoManager : MonoBehaviour
     {
         #region Vars
+        #region Test Keys
+        // for testing start/stop recording
+        protected KeyCode startRecordingKey = KeyCode.J;
+        protected KeyCode stopRecordingKey = KeyCode.K;
+        protected KeyCode printMementosKey = KeyCode.L;
+        #endregion
 
         // Singelten instance
         private static ItemMementoManager instance = null;
@@ -32,6 +38,37 @@ namespace BugFreeProductions.Tools
         #endregion
 
         #region Methods
+
+        #region Test Methods
+        // for testing start/stop recording
+        protected virtual void Update()
+        {
+            if (Input.GetKeyDown(startRecordingKey))
+            {
+                sessionRecorder.StartRecordingSession();
+                Debug.Log("Started Recording Session.");
+            }
+
+            if (Input.GetKeyDown(stopRecordingKey))
+            {
+                // stop recording
+                sessionRecorder.StopRecordingSession();
+                Debug.Log("Stopped Recording Session with " + sessionRecorder.Mementos.Count + " Mementos recorded.");
+            }
+
+            if (Input.GetKeyDown(printMementosKey))
+            {
+                int itemCount = 0;
+                // print mementos
+                foreach (ItemMemento memento in sessionRecorder.Mementos)
+                {
+                    itemCount++;
+                    Debug.Log(itemCount + ": Memento ID: " + memento.id + " at position: " + memento.tpX + " , " + memento.tpY + " , " + memento.tpZ);
+                }
+            }
+        }
+        #endregion
+
         // make Singelten on enable
         private void OnEnable()
         {
@@ -49,6 +86,11 @@ namespace BugFreeProductions.Tools
                 DontDestroyOnLoad(this.gameObject);
                 ReadRoomsInPath.FindRoomNames();
             }
+        }
+
+        public void AddMemento(ItemMemento aMemento)
+        {
+            sessionRecorder.AddMemento(aMemento);
         }
 
         // onScene change

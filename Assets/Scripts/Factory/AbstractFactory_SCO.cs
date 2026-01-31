@@ -82,12 +82,24 @@ namespace BugFreeProductions.Tools
 
             foreach (GenericFactory_SCO gf in genericFactory_SCOs)
             {
-                
-
                 gf.CreateItem(ref aFI, aPlacement);
 
-                
+            }
 
+            // ref for memento recorder if found
+            ItemMementoRecorder imr = null;
+
+            if (aFI != null)
+            {
+                // search for memento recorder
+                imr = aFI.GetComponent<ItemMementoRecorder>();
+            }
+            
+
+            if (imr != null)
+            {
+                // record memento
+                imr.RecordMemento();
             }
         }
 
@@ -159,7 +171,10 @@ namespace BugFreeProductions.Tools
                 List<Poolable> retList = new List<Poolable>();
                 foreach (GenericFactory_SCO gf in genericFactory_SCOs)
                 {
-                    retList.AddRange(gf.PooledItems);
+                    foreach(Poolable poolable in gf.PooledItems)
+                    {
+                        retList.Add(poolable);
+                    }
                 }
                 return retList;
             }

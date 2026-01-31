@@ -11,14 +11,14 @@ namespace BugFreeProductions.Extentions
 {
     public static class BugFreeTool
     {
-        #region Velocity Limmiter World Speed
+        #region Velocity Limiter World Speed
         public const float worldSpeed = 25f;
 
         public static void LimitToWorldVelocity(this Vector3 tV3)
         {
             if (tV3.magnitude > worldSpeed)
             {
-                // limmit the velosity under word speed
+                // limit the velocity under word speed
 
                 // store current Velocity
 

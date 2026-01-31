@@ -13,14 +13,24 @@ namespace BugFreeProductions.Tools
         #region Vars
         // hold the recording of all mementos
         protected List<ItemMemento> mementos = new List<ItemMemento>();
-        
+        protected bool isRecording = false;
+
+
+       
+
         #endregion
 
         #region Methods
+
+        
+
         // start a recording session
         public virtual void StartRecordingSession()
         {
             mementos.Clear();
+
+            // set recording flag
+            isRecording = true;
 
             List<Poolable> pooled = ItemMementoManager.Instance.PooledItems;
 
@@ -30,16 +40,42 @@ namespace BugFreeProductions.Tools
                 ItemMementoRecorder recorder = poolable.GetComponent<ItemMementoRecorder>();
                 if (recorder != null)
                 {
-                    ItemMemento memento = recorder.RecordMemento();
-                    mementos.Add(memento);
+                    // record memento
+                    recorder.RecordMemento();
+                    //mementos.Add(memento);
                 }
             }
+           
+
+            Debug.Log("Memento Session Recorder: Started Recording Session with " + mementos.Count + " initial Mementos.");
         }
 
+        // stop a recording session
+        public virtual void StopRecordingSession()
+        {
+            // set recording flag
+            isRecording = false;
+        }
+
+        // add a memento to the session
+        public virtual void AddMemento(ItemMemento aMemento)
+        {
+            // only add if recording
+            if (isRecording == true)
+            {
+                // add memento to list
+                mementos.Add(aMemento);
+            }
+            
+        }
         #endregion
 
         #region Accessors
-
+        // access to mementos recorded
+        public List<ItemMemento> Mementos
+        {
+            get { return mementos; }
+        }
         #endregion
     }
 }

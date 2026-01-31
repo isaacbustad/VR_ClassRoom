@@ -19,10 +19,8 @@ namespace BugFreeProductions.Tools
 
 
         #region Methods
-        public ItemMemento RecordMemento()
-        {
-            
-            
+        public virtual void RecordMemento()
+        {            
             // get a ObjectPlacement to base the memento on
             ObjectPlacement objP = GetComponent<PlacableFactoryItem>().ObjectPlacement();
 
@@ -30,10 +28,10 @@ namespace BugFreeProductions.Tools
             ItemMemento itemMemento = new ItemMemento(objP);
 
             // add to manager
-            //ItemMementoManager.Instance.AddMemento(itemMemento);
+            ItemMementoManager.Instance.AddMemento(itemMemento);
 
             // return it to caller
-            return itemMemento;
+            //return itemMemento;
         }
         #endregion
 
