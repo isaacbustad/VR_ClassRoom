@@ -87,19 +87,7 @@ namespace BugFreeProductions.Tools
                 }
             }
 
-           /* // create new item
-            GameObject nGO = Instantiate(factoryItem, Vector3.zero, Quaternion.identity);
-            FactoryItem fi = nGO.GetComponent<FactoryItem>();
-
-            if (fi != null)
-            {
-                fi.UseFactoryItem(aPlacement, pool);
-                aFI = fi;
-                if (fi.ID == JSONPlacementMannager.Instance.RoomID)
-                {
-                    JSONPlacementMannager.Instance.Pool = pool;
-                }
-            }*/
+           
         }
 
         #endregion

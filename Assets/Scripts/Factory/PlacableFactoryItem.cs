@@ -11,12 +11,13 @@ namespace BugFreeProductions.Tools
 {
     public class PlacableFactoryItem : FactoryItem
     {
-        // Var
+        #region Vars
         protected PlacableFactoryItemBody body;
         protected Rigidbody rb;
         // Components in body use get component to collect
 
 
+        #endregion
 
         // Methods
         #region Setup and Finalize placement

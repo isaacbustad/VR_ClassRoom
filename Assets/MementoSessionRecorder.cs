@@ -13,11 +13,16 @@ namespace BugFreeProductions.Tools
         #region Vars
         // hold the recording of all mementos
         protected List<ItemMemento> mementos = new List<ItemMemento>();
+
+        // track unique memento IDs
+        protected int nextMementoID = 0;
+
+        // keep dictionary of factory items by a memento ID for quick access
+        protected Dictionary<int, FactoryItem> factoryItemsByMementoID = new Dictionary<int, FactoryItem>();
+
+        // recording flag
         protected bool isRecording = false;
-
-
-       
-
+        
         #endregion
 
         #region Methods
@@ -53,6 +58,9 @@ namespace BugFreeProductions.Tools
         // stop a recording session
         public virtual void StopRecordingSession()
         {
+            // write mementos to file 
+            
+
             // set recording flag
             isRecording = false;
         }
@@ -68,6 +76,23 @@ namespace BugFreeProductions.Tools
             }
             
         }
+
+        public virtual int GetMementoID(int aID, FactoryItem aFI)
+        {
+            int retID = nextMementoID;
+
+            if(factoryItemsByMementoID.ContainsKey(aID) == false)
+            {
+                factoryItemsByMementoID.Add(retID, aFI);
+                retID = aID;
+            }
+            else
+            {
+                nextMementoID++;
+            }
+            
+            return retID;
+        }
         #endregion
 
         #region Accessors
@@ -76,6 +101,7 @@ namespace BugFreeProductions.Tools
         {
             get { return mementos; }
         }
+
         #endregion
     }
 }

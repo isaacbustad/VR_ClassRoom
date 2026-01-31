@@ -28,7 +28,7 @@ namespace BugFreeProductions.Tools
 
         #endregion
         public string id = "NA";
-        public string instanceID = "NA";
+        public int instanceID = 0;
         #endregion
 
         #region constructors

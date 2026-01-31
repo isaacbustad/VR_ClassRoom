@@ -15,7 +15,7 @@ namespace BugFreeProductions.Tools
         // id standing for particular prefab
         [SerializeField] protected string id = "NA";
 
-        protected string instanceID = "NA";
+        protected int instanceID = -1;
 
 
 
@@ -39,7 +39,7 @@ namespace BugFreeProductions.Tools
             transform.rotation = Quaternion.Euler(aPlacement.trX, aPlacement.trY, aPlacement.trZ);
             
             // set the instance ID based on the placement
-            instanceID = aPlacement.instanceID;
+            //instanceID = aPlacement.instanceID;
 
             // pool objects created with placement data
             pool.PoolObj(this);
@@ -74,7 +74,7 @@ namespace BugFreeProductions.Tools
             nObjPlace.trZ = nObjRot.z;
             
             // set unique identifier
-            nObjPlace.instanceID = instanceID;
+            //nObjPlace.instanceID = instanceID;
 
             return nObjPlace;
         }
@@ -82,6 +82,7 @@ namespace BugFreeProductions.Tools
         // Accessors
         public virtual string ID { get { return id; } }
         
+        public virtual int InstanceID { get { return instanceID; }}
 
 
     }

@@ -99,6 +99,11 @@ namespace BugFreeProductions.Tools
             // do nothing for now
         }
 
+        public int GetNextMementoID(int aID, FactoryItem aFI)
+        {
+            return sessionRecorder.GetMementoID(aID, aFI);
+        }
+
         #endregion
 
 
@@ -125,6 +130,9 @@ namespace BugFreeProductions.Tools
             }
 
         }
+
+        // Access next memento ID
+        
         #endregion
     }
 }

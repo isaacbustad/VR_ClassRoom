@@ -16,7 +16,9 @@ namespace BugFreeProductions.Tools
     public class ItemMemento : ObjectPlacement
     {
         #region Vars
-        
+        // hold a memento's unique identifier
+        public int memID = -1;
+
         // list of actions conducted this memento via strings
         protected string[] actions = new string[0];
 
