@@ -80,3 +80,5 @@ crashlytics-build.properties
 */[Aa]ssets/XR/Settings/OpenXR Package Settings.asset
 */[Aa]ssets/Resources/OculusRuntimeSettings.asset.meta
 */[Aa]ssets/Resources/OculusRuntimeSettings.asset
+Assets/Resources/OculusRuntimeSettings.asset
+Assets/Resources/OculusRuntimeSettings.asset

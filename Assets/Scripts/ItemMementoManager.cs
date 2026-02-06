@@ -21,6 +21,11 @@ namespace BugFreeProductions.Tools
         protected KeyCode printMementosKey = KeyCode.L;
         #endregion
 
+        #region Test Path
+        // for testing path
+        protected string testRecordPath = "/record.json";
+        #endregion
+
         // Singelten instance
         private static ItemMementoManager instance = null;
 
@@ -131,7 +136,14 @@ namespace BugFreeProductions.Tools
 
         }
 
-        // Access next memento ID
+        // Access for test record path
+        public string TestRecordPath
+        {
+            get
+            {
+                return testRecordPath;
+            }
+        }
         
         #endregion
     }
