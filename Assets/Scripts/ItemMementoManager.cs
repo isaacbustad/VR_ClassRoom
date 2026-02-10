@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// ToDo: create list of all pooled items stored here or in ObjectPlacementManager
+// ToDo: calculate time between memento records based on current pooled item count and a desired number of rounds per second
 
 namespace BugFreeProductions.Tools
 {
@@ -31,10 +33,17 @@ namespace BugFreeProductions.Tools
 
         // hold the recording of all mementos
         protected List<ItemMemento> mementos = new List<ItemMemento>();
-        protected MementoSessionRecorder sessionRecorder = new MementoSessionRecorder();
+        protected MementoSessionRecorder sessionRecorder;
+        protected MementoSessionWriter sessionWriter;
 
         // reference to Abstract Factory
         [SerializeField] private AbstractFactory_SCO abf_SCO = null;
+
+        // time between memento records
+        protected float timeBetweenMementoRecords = 0.1f;
+
+        
+        
         
         // hold path
         protected string recordPath = "/record/test";
@@ -43,6 +52,14 @@ namespace BugFreeProductions.Tools
         #endregion
 
         #region Methods
+        // OnEnable collect variables
+        protected virtual void SetDefaults()
+        {
+            // get session recorder
+            sessionRecorder = MementoSessionRecorder.Instance;
+            // get session writer
+            sessionWriter = MementoSessionWriter.Instance;
+        }
 
         #region Test Methods
         // for testing start/stop recording
@@ -111,6 +128,16 @@ namespace BugFreeProductions.Tools
 
         #endregion
 
+        #region Constructors
+        // make Singelten
+        private ItemMementoManager()
+        {
+            // set defaults
+            SetDefaults();
+        } 
+        
+        #endregion
+
 
         #region Accessors
         // Singelten Accessors
@@ -145,6 +172,15 @@ namespace BugFreeProductions.Tools
             }
         }
         
+        // Access for time between memento records
+        public float TimeBetweenMementoRecords
+        {
+            // time Memento Records = TimeBetweenMementoRecords divided by current pooled  item count
+            get
+            {
+                return timeBetweenMementoRecords;
+            }
+        }   
         #endregion
     }
 }

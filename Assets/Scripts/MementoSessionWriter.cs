@@ -12,6 +12,8 @@ namespace BugFreeProductions.Tools
     public class MementoSessionWriter
     {
         #region Vars
+        // singleton instance
+        private static MementoSessionWriter instance = null;
 
         #endregion
 
@@ -19,11 +21,31 @@ namespace BugFreeProductions.Tools
         // write memento session to disk
         public virtual void WriteMementoSession(ItemMementoList mementoList, string path)
         {
-            
+            CustomGatewayJSON.Instance.WriteJsonFile(path, JsonUtility.ToJson(mementoList));
+        }
+        #endregion
+
+        #region Constructors
+        // make Singelten
+        private MementoSessionWriter()
+        {
+
         }
         #endregion
 
         #region Accessors
+        // singleton instance accessor
+        public static MementoSessionWriter Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MementoSessionWriter();
+                }
+                return instance;
+            }
+        }
 
         #endregion
         

@@ -11,6 +11,9 @@ namespace BugFreeProductions.Tools
     public class MementoSessionRecorder
     {
         #region Vars
+        // singleton instance
+        private static MementoSessionRecorder instance = null;
+
         // hold the recording of all mementos
         protected List<ItemMemento> mementos = new List<ItemMemento>();
 
@@ -22,13 +25,16 @@ namespace BugFreeProductions.Tools
 
         // recording flag
         protected bool isRecording = false;
+
+        // time since last record
+        protected float timeSinceLastRecord = 0;
         
-        #endregion
+        #endregion // Vars
 
         #region Methods
 
         
-
+        #region  Mement Recording Methods
         // start a recording session
         public virtual void StartRecordingSession()
         {
@@ -93,7 +99,38 @@ namespace BugFreeProductions.Tools
             
             return retID;
         }
-        #endregion
+        
+        #endregion // Recording Methods
+
+        #region Session Recording Methods
+        // record mementos durring a session over time
+        // this will be called by ItemMementoManager in update
+        public virtual void RecordSession(float aDeltaTime)
+        {
+            
+
+             // if recording and time to record
+            if (isRecording == true)
+            {
+                timeSinceLastRecord += aDeltaTime;
+                if (timeSinceLastRecord > ItemMementoManager.Instance.TimeBetweenMementoRecords)
+                {
+                    // time Memento Records = TimeBetweenMementoRecords divided by current pooled  item count
+                }
+            }
+        }
+
+        #endregion // Session Recording Methods
+
+        #endregion // Methods
+
+        #region Constructors
+        // make Singelten
+        private MementoSessionRecorder()
+        {
+            
+        }
+        #endregion // Constructors
 
         #region Accessors
         // access to mementos recorded
@@ -102,6 +139,19 @@ namespace BugFreeProductions.Tools
             get { return mementos; }
         }
 
-        #endregion
+        // access to singleton instance
+        public static MementoSessionRecorder Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MementoSessionRecorder();
+                }
+                return instance;
+            }
+        }
+
+        #endregion // Accessors
     }
 }
