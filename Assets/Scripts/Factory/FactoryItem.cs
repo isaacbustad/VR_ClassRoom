@@ -43,6 +43,7 @@ namespace BugFreeProductions.Tools
 
             // pool objects created with placement data
             pool.PoolObj(this);
+            
         }
         #endregion
 

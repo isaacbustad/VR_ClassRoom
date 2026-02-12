@@ -20,6 +20,9 @@ namespace BugFreeProductions.Tools
         // factory References
         [SerializeField] private AbstractFactory_SCO abf_SCO = null;
 
+        // list of all Factory Item objects in the scene kept for optimization and memento access
+        private List<FactoryItem> factoryItems  = new List<FactoryItem>();
+
         // pathing variables
         [SerializeField] private string roomConfigPath = "N/A";
         private string objectPlacementPath = "ObjectPlacements.json";
