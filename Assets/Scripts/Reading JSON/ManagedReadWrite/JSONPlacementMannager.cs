@@ -125,5 +125,8 @@ namespace BugFreeProductions.Tools
 
         public string NotRoom { get { return notRoom; } }
 
+        // Access list of factory items
+        
+
     }
 }
