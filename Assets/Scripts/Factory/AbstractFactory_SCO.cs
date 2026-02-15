@@ -63,22 +63,7 @@ namespace BugFreeProductions.Tools
                 gf.CreateItem(ref aFI, aPlacement);
 
             }
-
-            // ref for memento recorder if found
-            ItemMementoRecorder imr = null;
-
-            if (aFI != null)
-            {
-                // search for memento recorder
-                imr = aFI.GetComponent<ItemMementoRecorder>();
-            }
-            
-
-            if (imr != null)
-            {
-                // record memento
-                imr.RecordMemento();
-            }
+                       
         }
 
         // for later advanced placement

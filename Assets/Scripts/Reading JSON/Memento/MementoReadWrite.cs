@@ -38,13 +38,13 @@ public class MementoReadWrite : MonoBehaviour
         // 
         public ItemMemento FindItemMemento(string aID, string aFilePath)
         {
-            ItemMementoList objLST = JsonUtility.FromJson<ItemMementoList>(CustomGatewayJSON.Instance.ReadJsonFile(aFilePath));
+            ItemMementoList imLST = JsonUtility.FromJson<ItemMementoList>(CustomGatewayJSON.Instance.ReadJsonFile(aFilePath));
 
-            foreach (ItemMemento op in objLST.itemMementos)
+            foreach (ItemMemento im in imLST.itemMementos)
             {
-                if (op.id == aID)
+                if (im.id == aID)
                 {
-                    return op;
+                    return im;
                 }
             }
             return null;
@@ -53,9 +53,9 @@ public class MementoReadWrite : MonoBehaviour
         
 
         // Writing placements based on a passed in file path
-        public void WriteItemMementos(ItemMementoList aPlacementLst, string aSavePath)
+        public void WriteItemMementos(ItemMementoList aItemMementoList, string aSavePath)
         {
-            string JSONstr = JsonUtility.ToJson(aPlacementLst);
+            string JSONstr = JsonUtility.ToJson(aItemMementoList);
 
             CustomGatewayJSON.Instance.WriteJsonFile(aSavePath, JSONstr);
         }

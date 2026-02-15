@@ -12,11 +12,13 @@ namespace BugFreeProductions.Tools
     public interface Subscription 
     {
         // add a subscriber to the Subsctition
-        public void AddSubscriber(Subscriber subscriber);
+        public void AddSubscriber(Subscriber aSub);
 
         // remove a subscriber from the Subscription
-        public void RemoveSubscriber(Subscriber subscriber);
-        protected void NotifySubscribers(string message);
+        public void RemoveSubscriber(Subscriber aSub);
+
+        // notify
+        public void NotifySubscribers();
 
         
 

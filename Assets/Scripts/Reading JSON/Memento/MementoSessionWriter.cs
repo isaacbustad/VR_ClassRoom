@@ -13,7 +13,7 @@ namespace BugFreeProductions.Tools
     {
         #region Vars
         // singleton instance
-        private static MementoSessionWriter instance = null;
+        protected static MementoSessionWriter instance = null;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace BugFreeProductions.Tools
 
         #region Constructors
         // make Singelten
-        private MementoSessionWriter()
+        protected MementoSessionWriter()
         {
 
         }

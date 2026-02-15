@@ -39,8 +39,7 @@ namespace BugFreeProductions.Tools
         // reference to Abstract Factory
         [SerializeField] private AbstractFactory_SCO abf_SCO = null;
 
-        // time between memento records
-        protected float timeBetweenMementoRecords = 0.1f;
+        
 
         
         
@@ -61,12 +60,15 @@ namespace BugFreeProductions.Tools
             sessionWriter = MementoSessionWriter.Instance;
         }
 
+
+
         #region Test Methods
         // for testing start/stop recording
-        protected virtual void Update()
+        protected void TestByKey()
         {
             if (Input.GetKeyDown(startRecordingKey))
             {
+                Debug.Log("Started Recording Session.");
                 sessionRecorder.StartRecordingSession();
                 Debug.Log("Started Recording Session.");
             }
@@ -89,7 +91,15 @@ namespace BugFreeProductions.Tools
                 }
             }
         }
-        #endregion
+        #endregion // Test Methods
+
+        #region Unity Methods
+        protected virtual void Update()
+        {
+            TestByKey();
+
+            sessionRecorder.RecordSession(Time.deltaTime);
+        }
 
         // make Singelten on enable
         private void OnEnable()
@@ -110,10 +120,8 @@ namespace BugFreeProductions.Tools
             }
         }
 
-        public void AddMemento(ItemMemento aMemento)
-        {
-            sessionRecorder.AddMemento(aMemento);
-        }
+        #endregion // Unity Methods
+
 
         // onScene change
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -121,12 +129,7 @@ namespace BugFreeProductions.Tools
             // do nothing for now
         }
 
-        public int GetNextMementoID(int aID, FactoryItem aFI)
-        {
-            return sessionRecorder.GetMementoID(aID, aFI);
-        }
-
-        #endregion
+        #endregion // Methods
 
         #region Constructors
         // make Singelten
@@ -172,15 +175,7 @@ namespace BugFreeProductions.Tools
             }
         }
         
-        // Access for time between memento records
-        public float TimeBetweenMementoRecords
-        {
-            // time Memento Records = TimeBetweenMementoRecords divided by current pooled  item count
-            get
-            {
-                return timeBetweenMementoRecords;
-            }
-        }   
+        
         #endregion
     }
 }

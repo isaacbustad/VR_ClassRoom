@@ -1,6 +1,7 @@
 // Isaac Bustad
 // 4/3/2025
 
+//#define NotTesting
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +10,10 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 
+
 namespace BugFreeProductions.Tools
 {
-    public class JSONPlacementMannager : MonoBehaviour
+    public class JSONPlacementMannager : MonoBehaviour, Subscription
     {
         // Vars
         // Singelten instance
@@ -77,8 +79,10 @@ namespace BugFreeProductions.Tools
             if (roomConfigPath != notRoom)
             {
                 jsonReader.SpawnObjects("/" + roomConfigPath + objectPlacementPath);
+                #if NotTesting
                 FindObjectOfType<RoomGenerator>().LoadIntoRoom();
                 FindObjectOfType<RoomGenerator>().HideFloorPoints();
+                #endif
                 //FindObjectOfType <VRInputMapManager>().SwitchToDefaultMode(false);
             }
             
@@ -89,6 +93,28 @@ namespace BugFreeProductions.Tools
             jsonWriter.WriteObjPlacementData("/" + roomConfigPath + roomPlacementPath, "/" + roomConfigPath + objectPlacementPath);
         }
         
+
+        #region Subscription Methods
+        // add a subscriber to the Subsctition
+        public void AddSubscriber(Subscriber aSub)
+        {
+            
+
+            
+        }
+
+        // remove a subscriber from the Subscription
+        public void RemoveSubscriber(Subscriber aSub)
+        {
+            
+        }
+
+        // notify all subscribers
+        public void NotifySubscribers()
+        {
+            
+        }
+        #endregion
 
         
 
@@ -126,6 +152,13 @@ namespace BugFreeProductions.Tools
         public string NotRoom { get { return notRoom; } }
 
         // Access list of factory items
+        public List<FactoryItem> FactoryItems
+        {
+            get
+            {
+                return factoryItems;
+            }
+        }
         
 
     }

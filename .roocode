@@ -1,0 +1,1 @@
+This is a Unity C# project. Only suggest C# code. Use UnityEngine namespace and follow Unity-specific lifecycle methods (Start, Update, etc.). Never suggest Python code here.

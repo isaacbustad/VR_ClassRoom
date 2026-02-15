@@ -25,6 +25,8 @@ namespace BugFreeProductions.Tools
         // time stamp as a float
         protected double timestamp = 0;
 
+        public bool isDestroyed = false;
+
         #endregion
 
         #region Methods
@@ -41,6 +43,14 @@ namespace BugFreeProductions.Tools
         public ItemMemento(ObjectPlacement aOP) : base(aOP)
         {
             timestamp = Time.realtimeSinceStartupAsDouble;
+        }
+
+        public bool IsDestroyed
+        {
+            set
+            {
+                isDestroyed = value;
+            }
         }
 
         #endregion

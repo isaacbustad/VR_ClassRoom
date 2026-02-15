@@ -1,0 +1,27 @@
+# To-Do List
+## Items that need to be done soon
+1.  XX      Write out the memento recordings    
+2.  XX      Read the Mementos back in.
+3.      Replay the read mementos.
+        // ToDo: use loaded mementos to replay recording
+
+            // ToDo: create a new memento player for ids not previously processed
+
+            // ToDo: limit the number of mementos processed in a frame to max batch size
+
+            // ToDo: Use Linq reuse existing memento players
+
+4.  XX      Add a destroyed value to Memento
+
+    # Edits
+5.      // ToDo: Use Linq reuse existing memento players
+6.      // ToDo: Remove Dictionary usage
+
+## Future Items
+1.      Convert pool system to use observer pattern instead.
+2.      Create a Memento Item when ID is first encountered.
+3.      Destroy a Memento when the isDestroyed value is encountered.
+4.      Add sub-session writing system for memento recordings.
+
+X.  Canceled Inheritance is important to functionality      Change memento to struct.
+X.  Canceled Inheritance is important to functionality      Change object placement to struct.      
