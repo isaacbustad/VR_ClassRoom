@@ -44,6 +44,9 @@ namespace BugFreeProductions.Tools
         // batch size
         protected int maxBatchSize = 5;
 
+        // current playback time
+        protected double playbackTime = 0.00;
+
         #endregion // Vars
 
         #region Methods
@@ -57,21 +60,42 @@ namespace BugFreeProductions.Tools
             // begin by loading the recording into memory
             LoadRecording(recordingTestPath);
 
+            // set starting time
+            if (playbackMementos.Count > 0)
+            {
+                playbackTime = playbackMementos[0].timestamp;
+            }
+
             isPlaying = true;
         }
 
         // continues playback of the recording
-        public virtual void ContinuePlayback()
+        public virtual void ContinuePlayback(double aDeltaTime)
         {
             // ToDo: use loaded mementos to replay recording
 
             // ToDo: create a new memento player for ids not previously processed
+            
+            
+            
 
             // ToDo: limit the number of mementos processed in a frame to max batch size
 
             // ToDo: Use Linq reuse existing memento players
 
             
+        }
+
+        protected virtual void ReplayMemento(ItemMemento aIM)
+        {
+            // select a single Player from Memento Players if the ID is Present
+            MementoPlayer aIMP = mementoPlayers.Where(mp => mp.MemID == aIM.memID).Single();
+
+            if (aIMP != null)
+            {
+                aIMP.PlayMemento(aIM);
+            }
+
         }
 
         

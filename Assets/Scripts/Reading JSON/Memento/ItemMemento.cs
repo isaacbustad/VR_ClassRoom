@@ -23,7 +23,7 @@ namespace BugFreeProductions.Tools
         protected string[] actions = new string[0];
 
         // time stamp as a float
-        protected double timestamp = 0;
+        public double timestamp = 0;
 
         public bool isDestroyed = false;
 

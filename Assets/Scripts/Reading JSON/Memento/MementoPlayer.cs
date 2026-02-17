@@ -11,11 +11,17 @@ using UnityEngine;
 public class MementoPlayer : MonoBehaviour, Subscriber
 {
     #region Vars
-    protected ItemMemento memento = null;
+    protected int memID = -1;
 
     #endregion // Vars
 
     #region Methods
+
+    public virtual void PlayMemento(ItemMemento aIM)
+    {
+        transform.position = new Vector3(aIM.tpX, aIM.tpY, aIM.tpZ);
+        transform.rotation = Quaternion.Euler(aIM.trX, aIM.trY, aIM.trZ);
+    }
 
     #region Subscriber Methods
     // method to recieve update from subscrition
@@ -41,7 +47,13 @@ public class MementoPlayer : MonoBehaviour, Subscriber
     #endregion // Methods
 
     #region Accessors
-
+    public int MemID
+    {
+        get
+        {
+            return memID;
+        }
+    }
     #endregion // Accessors
 
 }
