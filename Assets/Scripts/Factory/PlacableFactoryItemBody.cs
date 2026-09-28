@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 //using UnityEngine.InputSystem;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlacableFactoryItemBody : MonoBehaviour

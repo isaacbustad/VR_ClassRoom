@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [CreateAssetMenu(fileName = "LayerCheck_SCO", menuName = "ScriptableObject/LayerCheck_SCO")]
     public class LayerCheck_SCO : ScriptableObject

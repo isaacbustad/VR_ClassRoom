@@ -5,7 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BugFreeProductions.Extentions;
+using BugFreeProductions.VRClassroom;
 
 public class PlayerMoveState 
 {
@@ -31,7 +31,7 @@ public class PlayerMoveState
     {
         Move(aPMC.RB,aPMC.IB.MoveDir,aPMC.FreeWalkMSP, aPMC);
         AlignBod(aPMC.PlayerCameraContext, aPMC);
-        BugFreeTool.LimitToWorldVelocity(aPMC.RB.velocity);
+        BugFreeTool.LimitToWorldVelocity(aPMC.RB.linearVelocity);
     }
 
     // Update Actions
@@ -44,7 +44,7 @@ public class PlayerMoveState
     {
         if (aRB != null)
         {
-            if (aRB.velocity.magnitude < aMSP_SCO.MaxSpeed)
+            if (aRB.linearVelocity.magnitude < aMSP_SCO.MaxSpeed)
             {
                 aRB.AddForce(aMovDir.normalized * aMSP_SCO.Accelleration, ForceMode.Force);
             }
@@ -57,7 +57,7 @@ public class PlayerMoveState
     {
         if (aRB != null)
         {
-            if (aRB.velocity.magnitude < aMSP_SCO.MaxSpeed)
+            if (aRB.linearVelocity.magnitude < aMSP_SCO.MaxSpeed)
             {
                 // set forward force
                 Vector3 nF = aPCM.RotBodTF.forward * aMovDir.z;

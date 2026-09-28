@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     //[RequireComponent(typeof(Collider))]
     public class PlacableFactoryItemSafeArea : MonoBehaviour

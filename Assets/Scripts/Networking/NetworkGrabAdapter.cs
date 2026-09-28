@@ -8,19 +8,19 @@ using Mirror;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     [RequireComponent(typeof(NetworkIdentity))]
     public class NetworkGrabAdapter : NetworkBehaviour
     {
-        protected XRGrabInteractable grabInteractable;
+        protected UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
         protected Rigidbody rb;
 
         protected virtual void Awake()
         {
-            grabInteractable = GetComponent<XRGrabInteractable>();
+            grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             rb = GetComponent<Rigidbody>();
         }
 
@@ -40,7 +40,7 @@ namespace BugFreeProductions.Tools
         protected virtual void OnGrabEntered(SelectEnterEventArgs args)
         {
             // Only the local player initiating the grab needs to ask for authority
-            if (args.interactorObject is XRBaseInteractor interactor)
+            if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)
             {
                 // Verify if this is the local avatar's hand controller
                 // You want to avoid processing this if a remote ghost avatar somehow triggers it
@@ -54,7 +54,7 @@ namespace BugFreeProductions.Tools
             {
                 // XRI's default Throw on Detach runs right before this event.
                 // We capture that resulting velocity and tell the server to apply it for everyone.
-                CmdReleaseObject(rb.velocity, rb.angularVelocity);
+                CmdReleaseObject(rb.linearVelocity, rb.angularVelocity);
             }
         }
 
@@ -78,7 +78,7 @@ namespace BugFreeProductions.Tools
         protected virtual void RpcApplyThrowPhysics(Vector3 velocity, Vector3 angularVelocity)
         {
             // Ensures physics engine resumes seamlessly on all remote instances
-            rb.velocity = velocity;
+            rb.linearVelocity = velocity;
             rb.angularVelocity = angularVelocity;
         }
     }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Linq;
-using BugFreeProductions.Tools;
+using BugFreeProductions.VRClassroom;
 
 public class ReadRoomsInPath
 {

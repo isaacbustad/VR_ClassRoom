@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [System.Serializable]
     public class ObjectPrefference

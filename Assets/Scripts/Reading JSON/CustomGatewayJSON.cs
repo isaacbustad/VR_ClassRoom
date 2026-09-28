@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class CustomGatewayJSON
     {

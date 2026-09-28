@@ -7,13 +7,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {    
     public class NetXrInteractorBridge : MonoBehaviour
     {
         #region Vars
-        [SerializeField] protected XRBaseInteractor leftXrInteractor;
-        [SerializeField] protected XRBaseInteractor rightXrInteractor;
+        [SerializeField] protected UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor leftXrInteractor;
+        [SerializeField] protected UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor rightXrInteractor;
 
         [SerializeField] protected XRInteractionManager xRInteractionManager;
         #endregion Vars

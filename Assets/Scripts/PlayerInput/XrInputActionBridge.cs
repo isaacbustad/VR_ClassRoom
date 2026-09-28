@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // this neeeds to be de coupled but there is no time in the forseeable future to accomidate
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
 
     public class XrInputActionBridge : MonoBehaviour

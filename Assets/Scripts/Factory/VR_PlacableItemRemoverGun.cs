@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [RequireComponent(typeof(LineRenderer))]
     public class VR_PlacableItemRemoverGun : MonoBehaviour

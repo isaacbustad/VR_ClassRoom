@@ -8,7 +8,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class NetPlacableObjectPlacer : VR_PlacableItemPlacerGun
     {

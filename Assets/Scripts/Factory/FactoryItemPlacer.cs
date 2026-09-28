@@ -2,14 +2,14 @@
 // 2/4/2025
 
 
-using BugFreeProductions.Tools;
+using BugFreeProductions.VRClassroom;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class FactoryItemPlacer : MonoBehaviour
     {

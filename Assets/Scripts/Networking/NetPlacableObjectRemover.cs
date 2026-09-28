@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class NetPlacableObjectRemover : VR_PlacableItemRemoverGun
     {

@@ -8,7 +8,7 @@ using UnityEngine;
 using Oculus.Interaction.Input; // Meta Interaction SDK namespace
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class VR_RigPosSnap : MonoBehaviour
     {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [CreateAssetMenu(fileName = "AbstractFactory_SCO", menuName = "ScriptableObject/AbstractFactory_SCO")]
     public class AbstractFactory_SCO : ScriptableObject

@@ -4,11 +4,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using BugFreeProductions.Tools;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class MenuXrCharacterState : XrCharacterState
     {

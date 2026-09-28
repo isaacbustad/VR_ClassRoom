@@ -8,7 +8,7 @@ using Mirror;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class NetGuestPermissionManager : NetworkBehaviour
     {

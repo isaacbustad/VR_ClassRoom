@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Extentions
+namespace BugFreeProductions.VRClassroom
 {
     public static class BugFreeTool
     {

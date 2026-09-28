@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools {
+namespace BugFreeProductions.VRClassroom {
 
     [CreateAssetMenu(fileName = "FactoryAsBrantch", menuName = "ScriptableObject/FactoryAsBrantch")]
     public class FactoryAsBrantch : GenericFactory_SCO

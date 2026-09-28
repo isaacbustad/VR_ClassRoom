@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [RequireComponent(typeof(NetworkIdentity))]
     public class NetJSONPlacementManager : JSONPlacementMannager

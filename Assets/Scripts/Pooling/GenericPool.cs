@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Linq;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class GenericPool
     {

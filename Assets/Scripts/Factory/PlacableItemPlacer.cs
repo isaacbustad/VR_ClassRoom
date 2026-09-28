@@ -7,7 +7,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [RequireComponent(typeof(LineRenderer))]
     public class PlacableItemPlacer : FactoryItemPlacer

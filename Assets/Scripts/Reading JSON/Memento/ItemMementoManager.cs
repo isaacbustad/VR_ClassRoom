@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 // ToDo: create list of all pooled items stored here or in ObjectPlacementManager
 // ToDo: calculate time between memento records based on current pooled item count and a desired number of rounds per second
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     // manages playback of item mementos
     public class ItemMementoManager : MonoBehaviour

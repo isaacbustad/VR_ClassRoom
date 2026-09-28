@@ -1,7 +1,6 @@
 // Isaac Bustad
 // 9/17/2025
 
-using BugFreeProductions.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using UnityEngine;
 using System.Linq;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     // class that is for the recording of serialized information only
     [Serializable]

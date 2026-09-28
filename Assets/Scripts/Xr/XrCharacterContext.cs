@@ -5,15 +5,15 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     
     public class XrCharacterContext : MonoBehaviour
     {
         #region Vars
         [Header("Hand Interactors")]
-        [SerializeField] protected XRBaseControllerInteractor leftHandGrabInteractor;
-        [SerializeField] protected XRBaseControllerInteractor rightHandGrabInteractor;
+        [SerializeField] protected UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor leftHandGrabInteractor;
+        [SerializeField] protected UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor rightHandGrabInteractor;
 
         [Header("Component to disable in states")]
         [SerializeField] protected XRInteractionManager xrInteractionManager;

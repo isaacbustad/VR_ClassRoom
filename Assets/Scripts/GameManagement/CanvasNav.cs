@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace BugFreeProductions.Selection
+namespace BugFreeProductions.VRClassroom
 {
     public class CanvasNav : MonoBehaviour
     {

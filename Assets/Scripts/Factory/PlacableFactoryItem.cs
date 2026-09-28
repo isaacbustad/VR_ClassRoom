@@ -9,7 +9,7 @@ using Mirror.BouncyCastle.Asn1.Cmp;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     public class PlacableFactoryItem : FactoryItem, Subscriber
     {

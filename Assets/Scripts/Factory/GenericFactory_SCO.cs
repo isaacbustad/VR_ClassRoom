@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     [CreateAssetMenu(fileName = "GenericFactory_SCO", menuName = "ScriptableObject/GenericFactory_SCO")]
     public class GenericFactory_SCO : ScriptableObject

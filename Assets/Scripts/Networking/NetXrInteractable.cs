@@ -5,14 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEngine.XR.Interaction.Toolkit;
 
-namespace BugFreeProductions.Tools
+
+namespace BugFreeProductions.VRClassroom
 {    
     public class NetXrInteractable : NetworkBehaviour
     {
         #region Vars
-        protected XRGrabInteractable grabInteractable = null;
+        protected UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = null;
         #endregion Vars
 
         #region Methods
@@ -30,7 +30,7 @@ namespace BugFreeProductions.Tools
 
         protected virtual void Setup()
         {
-            grabInteractable = GetComponent<XRGrabInteractable>();
+            grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             
             // CRITICAL STEP: Prevent XRI from trying to track the object across the network
             // until Mirror says we officially have the authority to move it.

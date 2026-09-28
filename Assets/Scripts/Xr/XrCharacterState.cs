@@ -9,7 +9,7 @@ using UnityEngine;
 
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     
     public class XrCharacterState

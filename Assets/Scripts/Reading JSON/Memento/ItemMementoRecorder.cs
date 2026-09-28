@@ -2,13 +2,11 @@
 // 9/17/2025
 
 
-using BugFreeProductions.Tools;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
     // records a memento of a game object
     public class ItemMementoRecorder : MonoBehaviour , Subscriber

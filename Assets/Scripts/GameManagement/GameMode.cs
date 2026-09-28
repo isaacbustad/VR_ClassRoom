@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BugFreeProductions.ArcadeRacer
+namespace BugFreeProductions.VRClassroom
 {
     public class GameMode : MonoBehaviour
     {

@@ -5,7 +5,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using BugFreeProductions.Tools;
+using BugFreeProductions.VRClassroom;
 using UnityEngine;
 
 public abstract class SubscriberComponent : MonoBehaviour, Subscriber

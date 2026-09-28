@@ -4,12 +4,11 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using BugFreeProductions.Tools;
 using Mirror;
 using UnityEngine;
 
 
-namespace BugFreeProductions.Tools
+namespace BugFreeProductions.VRClassroom
 {
 
     public class NetItemMementoManager : ItemMementoManager
