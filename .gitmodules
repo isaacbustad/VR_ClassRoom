@@ -1,0 +1,9 @@
+[submodule "Assets/Plugins/Libraries/BugFreeProductionsLibrary"]
+	path = Assets/Plugins/Libraries/BugFreeProductionsLibrary
+	url = https://github.com/isaacbustad/BugFreeProductionsLibrary
+[submodule "Assets/Plugins/Libraries/BugFreeProductionsFishNetLibrary"]
+	path = Assets/Plugins/Libraries/BugFreeProductionsFishNetLibrary
+	url = https://github.com/isaacbustad/BugFreeProductionsFishNetLibrary
+[submodule "Assets/Plugins/Libraries/BugFreeProductionsVRLibrary"]
+	path = Assets/Plugins/Libraries/BugFreeProductionsVRLibrary
+	url = https://github.com/isaacbustad/BugFreeProductionsVRLibrary
