@@ -1,18 +1,25 @@
 ﻿<Solution>
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="FishNet.Runtime.csproj" />
   <Project Path="Unity.Mirror.CodeGen.csproj" />
+  <Project Path="SynapseSocket.csproj" />
   <Project Path="Edgegap.csproj" />
+  <Project Path="FishNet.Codegen.Cecil.csproj" />
   <Project Path="Mirror.Components.csproj" />
   <Project Path="Mirror.Editor.csproj" />
+  <Project Path="GameKit.Dependencies.csproj" />
   <Project Path="Mirror.Examples.csproj" />
   <Project Path="kcp2k.csproj" />
   <Project Path="Mirror.csproj" />
   <Project Path="SimpleWebTransport.csproj" />
   <Project Path="Mirror.Authenticators.csproj" />
   <Project Path="Mirror.Transports.csproj" />
+  <Project Path="Unity.FishNet.Codegen.csproj" />
   <Project Path="EncryptionTransportEditor.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj" />
+  <Project Path="FishNet.Demos.csproj" />
   <Project Path="Telepathy.csproj" />
   <Project Path="Mirror.CompilerSymbols.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj" />
