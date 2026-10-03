@@ -1,60 +1,49 @@
 // Created By   :   Isaac Bustad
 // Created      :   5/30/2026
+// Converted To :   FishNet on 10/3/2026
 
 using System.Collections;
 using System.Collections.Generic;
-using Mirror;
+using FishNet;
+using FishNet.Object;
 using UnityEngine;
-
-
 
 namespace BugFreeProductions.VRClassroom
 {
-
     public class NetPlacableItem : PlacableFactoryItem
     {
         #region Vars
-        protected NetworkIdentity ni = null;
+        [Tooltip("The FishNet NetworkObject component attached to this item.")]
+        protected NetworkObject netObj = null;
+
         protected NetPlacableItemSpawnable netSpawnable = null;
-        
         #endregion Vars
 
         #region Methods
         public override void RemoveItem()
         {
-            // if (ni.isServer)
-            // {
-            //     NetworkServer.Destroy(gameObject);
-            //     return;
-            // }
-
-            // if (ni.isClient && NetGuestPermissionManager.GuestCanEdit)
-            // {
-            //     netSpawnable.RemoveItem();
-            //     return;
-            // }
             Unsubscribe();
-            NetworkServer.Destroy(gameObject);
-            
+
+            // Despawn the object across the network using FishNet's NetworkObject
+            if (netObj != null && netObj.IsServer)
+            {
+                netObj.Despawn();
+            }
+            else if (InstanceFinder.IsServer)
+            {
+                InstanceFinder.ServerManager.Despawn(gameObject);
+            }
         }
 
         protected override void CollectVars()
         {
-            ni = GetComponent<NetworkIdentity>();
+            // Collect FishNet's NetworkObject instead of Mirror's NetworkIdentity
+            netObj = GetComponent<NetworkObject>();
             netSpawnable = GetComponent<NetPlacableItemSpawnable>();
 
             base.CollectVars();
-            // // get and default Rigidbody
-            // rb = GetComponent<Rigidbody>();
-            // rb.freezeRotation = true;
-
-            // // collect bodyScript
-            // body = GetComponent<PlacableFactoryItemBody>();
         }
 
-         
-
-        
         #endregion Methods
     }
 }

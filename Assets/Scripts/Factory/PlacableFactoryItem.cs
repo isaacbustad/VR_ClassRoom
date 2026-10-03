@@ -1,11 +1,9 @@
-// Isaac Bustad
-// 2/4/25
+// Created By   :   Isaac Bustad
+// Created      :   2/4/25
 
 
 using System.Collections;
 using System.Collections.Generic;
-using Meta.XR.ImmersiveDebugger.UserInterface;
-using Mirror.BouncyCastle.Asn1.Cmp;
 using UnityEngine;
 
 

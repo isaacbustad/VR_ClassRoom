@@ -1,56 +1,61 @@
-// Created by   :   Isaac Bustad
+// Created By   :   Isaac Bustad
 // Created      :   6/26/2026
-
+// Converted To :   FishNet on 10/3/2026
 
 using System.Collections;
 using System.Collections.Generic;
-using Mirror;
+using FishNet;
+using FishNet.Object;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 namespace BugFreeProductions.VRClassroom
 {
-    [RequireComponent(typeof(NetworkIdentity))]
+    [RequireComponent(typeof(NetworkObject))]
     public class NetJSONPlacementManager : JSONPlacementMannager
     {
         #region Vars
-        NetworkIdentity ni = null;
+        [Tooltip("Reference to the FishNet NetworkObject component.")]
+        protected NetworkObject netObj = null;
         #endregion Vars
 
         #region Methods
         protected override void Setup()
         {
-            // do the basic setup
+            // Do the basic setup from base class
             base.Setup();
 
-            // get NetworkIdentity to use network atributes
-            ni = GetComponent<NetworkIdentity>();
+            // Get NetworkObject to use FishNet attributes and checks
+            netObj = GetComponent<NetworkObject>();
         }
-
 
         protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             base.OnSceneLoaded(scene, mode);
             
-            // loop through subscribers
-            foreach(Subscriber aSub in subscribers)
+            // Only the server should handle spawning networked items upon scene load
+            if (InstanceFinder.IsServer)
             {
-                if (aSub is NetPlacableItem anItem)
+                // Loop through subscribers and spawn any placable items across the network
+                foreach (Subscriber aSub in subscribers)
                 {
-                    NetworkServer.Spawn(anItem.gameObject);
-
+                    if (aSub is NetPlacableItem anItem)
+                    {
+                        InstanceFinder.ServerManager.Spawn(anItem.gameObject);
+                    }
                 }
             }
         }
 
-        // public override void WriteRoomConfig()
-        // {
-        //     if (ni.isServer)
-        //     {
-        //         base.WriteRoomConfig();
-        //     }
-        // }
+        /*
+        public override void WriteRoomConfig()
+        {
+            if (netObj != null && netObj.IsServer)
+            {
+                base.WriteRoomConfig();
+            }
+        }
+        */
         
         #endregion Methods
     }

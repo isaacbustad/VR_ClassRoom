@@ -4,7 +4,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Meta.XR.ImmersiveDebugger.UserInterface;
-using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -140,7 +139,7 @@ namespace BugFreeProductions.VRClassroom
         {
             // If I am server we will disable the button component
             // find if the class exist on a server
-            bool isServer = NetGuestPermissionManager.Instance.isServer;
+            bool isServer = NetGuestPermissionManager.Instance.IsServer;
                 
             guestCanEditBtn.GetComponent<Button>().enabled = isServer;
             

@@ -1,9 +1,10 @@
 // Created By   :   Isaac Bustad
 // Created      :   6/11/2026
 // Assisted By  :   Gemini
+// Converted To :   FishNet on 10/3/2026
 
 using System.Collections.Generic;
-using Mirror;
+using FishNet.Object;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
@@ -35,7 +36,8 @@ namespace BugFreeProductions.VRClassroom
         [SerializeField] protected List<GameObject> localPlayerOnlyGOs = new List<GameObject>(); // Exposed to Inspector
 
         /// <summary>
-        /// Mirror native callback: Fires on ALL clients when this object is network-initialized.
+        /// FishNet native callback: Fires on ALL clients when this object is network-initialized.
+        /// Replaces Mirror's OnStartClient and OnStartLocalPlayer by evaluating base.IsOwner.
         /// </summary>
         public override void OnStartClient()
         {
@@ -44,19 +46,8 @@ namespace BugFreeProductions.VRClassroom
             // 1. Gather all references right here as the client starts up
             GatherComponentReferences();
 
-            // 2. Immediately default everything to OFF so remote clones don't cause glitches
-            ToggleLocalComponents(false);
-        }
-
-        /// <summary>
-        /// Mirror native callback: Fires ONLY on the client who physically owns this player object.
-        /// </summary>
-        public override void OnStartLocalPlayer()
-        {
-            base.OnStartLocalPlayer();
-
-            // This is officially YOU. Wake your local tracking, camera, and locomotion up!
-            ToggleLocalComponents(true);
+            // 2. Configure components based on whether this client owns the player object
+            ToggleLocalComponents(base.IsOwner);
         }
 
         protected void GatherComponentReferences()
@@ -106,12 +97,12 @@ namespace BugFreeProductions.VRClassroom
             if (moveProvider != null)        moveProvider.enabled = isLocal;
             if (turnProvider != null)        turnProvider.enabled = isLocal;
 
-            if (headPoseDriver != null)  headPoseDriver.enabled = isLocal;
-            if (leftHandPose != null)    leftHandPose.enabled = isLocal;
-            if (rightHandPose != null)   rightHandPose.enabled = isLocal;
+            if (headPoseDriver != null)   headPoseDriver.enabled = isLocal;
+            if (leftHandPose != null)     leftHandPose.enabled = isLocal;
+            if (rightHandPose != null)    rightHandPose.enabled = isLocal;
             
-            if (leftController != null)  leftController.enabled = isLocal;
-            if (rightController != null) rightController.enabled = isLocal;
+            if (leftController != null)   leftController.enabled = isLocal;
+            if (rightController != null)  rightController.enabled = isLocal;
 
             if (inputActionBridge != null) inputActionBridge.enabled = isLocal;
 

@@ -1,166 +1,138 @@
 // Created By   :   Isaac Bustad
 // Created      :   6/8/2026
+// Converted to FishNet for BugFreeProductions.VRClassroom - 10/3/2026
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Mirror;
-using UnityEditor.SceneManagement;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 
 namespace BugFreeProductions.VRClassroom
 {
+    /// <summary>
+    /// Manages guest permissions across the network using FishNet SyncVars,
+    /// allowing the server to control and broadcast guest capabilities (editing, recording, saving, replaying).
+    /// </summary>
     public class NetGuestPermissionManager : NetworkBehaviour
     {
         #region Vars
         protected static NetGuestPermissionManager instance = null;
 
-        // actions that need to be run on variable updates
+        // Actions triggered when permission values update
         public event Action<NetGuestPermission> OnPermissionsChanged;
 
         #region Synced and Network Vars
-        // network and synced variables
-        [SyncVar(hook = nameof(OnPermissionDataChanged))] protected NetGuestPermission netGuestPermission = new NetGuestPermission();
-
-
+        // Synchronized guest permission struct managed via FishNet SyncVar
+        public readonly SyncVar<NetGuestPermission> netGuestPermission = new SyncVar<NetGuestPermission>();
         #endregion Synced and Network Vars
         #endregion Vars
 
         #region Methods
-        // Write the matching hook method
-        protected virtual void OnPermissionDataChanged(NetGuestPermission oldData, NetGuestPermission newData)
-        {
-            // Optional: Protect against unnecessary execution if the data didn't actually change
-            // (Note: Structs compare all fields automatically when using Equals or == if implemented)
-            if (oldData.Equals(newData)) return;
 
-            // Broadcast the update to your local UI subscribers
-            OnPermissionsChanged?.Invoke(netGuestPermission);
-            Debug.Log("Data = bool can edit : " + netGuestPermission.guestCanEdit);
-        }
-        protected virtual void OnEnable()
+        protected virtual void Awake()
         {
             if (instance == null)
             {
                 instance = this;
             }
 
-            // else
-            // {
-            //     Destroy(gameObject);
-            // }
-
-
+            // Subscribe to FishNet SyncVar value change events
+            netGuestPermission.OnChange += OnPermissionDataChanged;
         }
+
+        // Hook method triggered when the SyncVar value changes on clients or server
+        protected virtual void OnPermissionDataChanged(NetGuestPermission oldData, NetGuestPermission newData, bool asServer)
+        {
+            // Protect against unnecessary execution if the data didn't actually change
+            if (oldData.Equals(newData)) return;
+
+            // Broadcast the update to local UI subscribers
+            OnPermissionsChanged?.Invoke(newData);
+            Debug.Log("Data = bool can edit : " + newData.guestCanEdit);
+        }
+
         public override void OnStartClient()
         {
-            OnPermissionsChanged?.Invoke(netGuestPermission);
+            base.OnStartClient();
+            // Ensure local subscribers get the initial synchronized state upon starting the client
+            OnPermissionsChanged?.Invoke(netGuestPermission.Value);
         }
 
         #region Toggles
 
-        // Only the owner should be able to request 
-        // the guest placing permission changing
+        // Toggle whether guests are permitted to edit the environment (Server-authoritative)
         public virtual void ToggleGuestCanEdit()
         {
-            // check if is owned by the local object 
-            if (isServer)
+            if (base.IsServer)
             {
-                NetGuestPermission nNetGuestPermission = netGuestPermission;
-
+                NetGuestPermission nNetGuestPermission = netGuestPermission.Value;
                 nNetGuestPermission.guestCanEdit = !nNetGuestPermission.guestCanEdit;
-
-                netGuestPermission = nNetGuestPermission;
-                // request the permission be toggled via command
-                //CmdToggleGuestCanEdit();
+                netGuestPermission.Value = nNetGuestPermission;
             }
-
-
         }
 
+        // Toggle whether guests are permitted to record sessions (Server-authoritative)
         public virtual void ToggleGuestCanRecord()
         {
-            // check if is owned by the local object 
-            if (isServer)
+            if (base.IsServer)
             {
-                NetGuestPermission nNetGuestPermission = netGuestPermission;
-
+                NetGuestPermission nNetGuestPermission = netGuestPermission.Value;
                 nNetGuestPermission.guestCanRecord = !nNetGuestPermission.guestCanRecord;
-
-                netGuestPermission = nNetGuestPermission;
-                // request the permission be toggled via command
-                //CmdToggleGuestCanEdit();
+                netGuestPermission.Value = nNetGuestPermission;
             }
-
-
         }
 
+        // Toggle whether guests are permitted to save room configurations (Server-authoritative)
         public virtual void ToggleGuestCanSave()
         {
-            // check if is owned by the local object 
-            if (isServer)
+            if (base.IsServer)
             {
-                // hold current permission value
-                NetGuestPermission nNetGuestPermission = netGuestPermission;
-
-                // edit current permissions
+                NetGuestPermission nNetGuestPermission = netGuestPermission.Value;
                 nNetGuestPermission.guestCanSave = !nNetGuestPermission.guestCanSave;
-
-                // reassign permissions to take effect
-                netGuestPermission = nNetGuestPermission;
-                
+                netGuestPermission.Value = nNetGuestPermission;
             }
         }
 
+        // Toggle whether guests are permitted to replay sessions (Server-authoritative)
         public virtual void ToggleGuestCanReplay()
         {
-            // check if is owned by the local object 
-            if (isServer)
+            if (base.IsServer)
             {
-                // hold current permission value
-                NetGuestPermission nNetGuestPermission = netGuestPermission;
-
-                // edit current permissions
+                NetGuestPermission nNetGuestPermission = netGuestPermission.Value;
                 nNetGuestPermission.guestCanReplay = !nNetGuestPermission.guestCanReplay;
-
-                // reassign permissions to take effect
-                netGuestPermission = nNetGuestPermission;
-                
+                netGuestPermission.Value = nNetGuestPermission;
             }
         }
 
-        // command to request server toggle permission 
-        // [Command] protected virtual void CmdToggleGuestCanEdit()
-        // {
-        //     if (isServer)
-        //     {
-        //         guestCanEdit = !guestCanEdit;
-        //     }
-        // }
         #endregion Toggles
 
         #region Functional Methods
-        // static for easy call
+        
+        // Static helper for external classes to trigger room saving
         public static void SaveRoom()
         {
-            instance.OnSaveRoom();
+            if (instance != null)
+            {
+                instance.OnSaveRoom();
+            }
         }
 
-        // overridable for easy change in childeren
+        // Overridable method handling the room saving logic based on server status or permissions
         protected virtual void OnSaveRoom()
         {
-            if (isServer)
+            if (base.IsServer)
             {
                 JSONPlacementMannager.Instance.WriteRoomConfig();
                 return;
             }
 
-            if (netGuestPermission.guestCanSave)
+            if (netGuestPermission.Value.guestCanSave)
             {
                 JSONPlacementMannager.Instance.WriteRoomConfig();
                 return;
             }
-            
         }
 
         #endregion Functional Methods
@@ -168,7 +140,6 @@ namespace BugFreeProductions.VRClassroom
         #endregion Methods
 
         #region Accessors
-
 
         public static NetGuestPermissionManager Instance
         {
@@ -182,7 +153,7 @@ namespace BugFreeProductions.VRClassroom
         {
             get
             {
-                return instance.netGuestPermission;
+                return instance != null ? instance.netGuestPermission.Value : default;
             }
         }
 
@@ -190,16 +161,15 @@ namespace BugFreeProductions.VRClassroom
         {
             get
             {
-                return instance.netGuestPermission.guestCanEdit;
+                return instance != null && instance.netGuestPermission.Value.guestCanEdit;
             }
-
         }
 
         public static bool GuestCanRecord
         {
             get
             {
-                return instance.netGuestPermission.guestCanRecord;
+                return instance != null && instance.netGuestPermission.Value.guestCanRecord;
             }
         }
 
@@ -207,7 +177,7 @@ namespace BugFreeProductions.VRClassroom
         {
             get
             {
-                return instance.netGuestPermission.guestCanSave;
+                return instance != null && instance.netGuestPermission.Value.guestCanSave;
             }
         }
 
@@ -215,11 +185,10 @@ namespace BugFreeProductions.VRClassroom
         {
             get
             {
-                return instance.netGuestPermission.guestCanReplay;
+                return instance != null && instance.netGuestPermission.Value.guestCanReplay;
             }
         }
+
         #endregion Accessors
     }
-
-
 }

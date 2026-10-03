@@ -1,23 +1,25 @@
 // Created By   :   Isaac Bustad
 // Created      :   6/15/2026
 // Assisted By  :   Gemini
-
+// Converted To :   FishNet on 10/3/2026
 
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
+using FishNet.Connection;
 using UnityEngine.XR.Interaction.Toolkit;
-
 
 namespace BugFreeProductions.VRClassroom
 {
-    
     [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
-    [RequireComponent(typeof(NetworkIdentity))]
+    [RequireComponent(typeof(NetworkObject))]
     public class NetworkGrabAdapter : NetworkBehaviour
     {
+        #region Vars
         protected UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
         protected Rigidbody rb;
+        #endregion Vars
 
+        #region Methods
         protected virtual void Awake()
         {
             grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
@@ -43,14 +45,15 @@ namespace BugFreeProductions.VRClassroom
             if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)
             {
                 // Verify if this is the local avatar's hand controller
-                // You want to avoid processing this if a remote ghost avatar somehow triggers it
+                // Request ownership from the server so we can manipulate the object locally
                 CmdRequestAuthority();
             }
         }
 
         protected virtual void OnGrabExited(SelectExitEventArgs args)
         {
-            if (isOwned)
+            // Verify if the local client currently owns this object before sending release physics
+            if (base.IsOwner)
             {
                 // XRI's default Throw on Detach runs right before this event.
                 // We capture that resulting velocity and tell the server to apply it for everyone.
@@ -58,28 +61,40 @@ namespace BugFreeProductions.VRClassroom
             }
         }
 
-        [Command]
-        protected virtual void CmdRequestAuthority()
+        /// <summary>
+        /// ServerRpc to request object ownership when a client grabs it.
+        /// RequireOwnership = false allows clients who do not yet own the object to request control.
+        /// </summary>
+        [ServerRpc(RequireOwnership = false)]
+        protected virtual void CmdRequestAuthority(NetworkConnection conn = null)
         {
-            // Remove authority from current owner (if any) and give to the sender
-            NetworkIdentity identity = GetComponent<NetworkIdentity>();
-            identity.RemoveClientAuthority(); 
-            identity.AssignClientAuthority(connectionToClient);
+            if (base.NetworkObject != null && conn != null)
+            {
+                // Give ownership to the requesting client connection (automatically replaces any previous owner)
+                base.NetworkObject.GiveOwnership(conn);
+            }
         }
 
-        [Command]
+        /// <summary>
+        /// ServerRpc to send the release throw velocities to the server.
+        /// </summary>
+        [ServerRpc]
         protected virtual void CmdReleaseObject(Vector3 velocity, Vector3 angularVelocity)
         {
-            // Server forces synchronization of the final velocity vectors across all clients
+            // Server forces synchronization of the final velocity vectors across all observing clients
             RpcApplyThrowPhysics(velocity, angularVelocity);
         }
 
-        [ClientRpc]
+        /// <summary>
+        /// ObserversRpc executed on all observing clients to synchronize throw physics.
+        /// </summary>
+        [ObserversRpc]
         protected virtual void RpcApplyThrowPhysics(Vector3 velocity, Vector3 angularVelocity)
         {
             // Ensures physics engine resumes seamlessly on all remote instances
             rb.linearVelocity = velocity;
             rb.angularVelocity = angularVelocity;
         }
+        #endregion Methods
     }
 }

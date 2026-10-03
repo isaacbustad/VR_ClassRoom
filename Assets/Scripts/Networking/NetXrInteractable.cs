@@ -4,7 +4,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
+using FishNet.Connection;
 
 
 namespace BugFreeProductions.VRClassroom
@@ -20,7 +21,7 @@ namespace BugFreeProductions.VRClassroom
         public override void OnStartClient()
         {
             base.OnStartClient();
-            Debug.Log($"[Mirror] Client started for object: {netId}");
+            Debug.Log($"[FishNet] Client started for object: {base.ObjectId}");
         }
 
         protected virtual void OnEnable()
@@ -33,8 +34,8 @@ namespace BugFreeProductions.VRClassroom
             grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             
             // CRITICAL STEP: Prevent XRI from trying to track the object across the network
-            // until Mirror says we officially have the authority to move it.
-            if (grabInteractable != null && !isOwned)
+            // until FishNet says we officially have the authority to move it.
+            if (grabInteractable != null && !base.IsOwner)
             {
                 grabInteractable.trackPosition = false;
                 grabInteractable.trackRotation = false;
@@ -53,34 +54,32 @@ namespace BugFreeProductions.VRClassroom
 
         #endregion
 
-        #region Mirror Authority Hooks
+       #region FishNet Authority Hooks
 
-        // This fires automatically the exact frame Mirror registers that 
-        // this client successfully obtained network ownership.
-        public override void OnStartAuthority()
+        // This fires automatically on clients when ownership changes.
+        public override void OnOwnershipClient(NetworkConnection prevOwner)
         {
-            base.OnStartAuthority();
-            Debug.Log($"[NetXrInteractable] Authority secured for NetID: {netId}. Activating XRI tracking.");
+            base.OnOwnershipClient(prevOwner);
 
-            // Turn XRI tracking back on so the object smoothly follows your hand
-            if (grabInteractable != null)
+            if (base.IsOwner)
             {
-                grabInteractable.trackPosition = true;
-                grabInteractable.trackRotation = true;
+                Debug.Log($"[NetXrInteractable] Authority secured for ID: {base.ObjectId}. Activating XRI tracking.");
+
+                if (grabInteractable != null)
+                {
+                    grabInteractable.trackPosition = true;
+                    grabInteractable.trackRotation = true;
+                }
             }
-        }
-
-        // This fires automatically when ownership is stripped or dropped.
-        public override void OnStopAuthority()
-        {
-            base.OnStopAuthority();
-            Debug.Log($"[NetXrInteractable] Authority lost for NetID: {netId}. Deactivating XRI tracking.");
-
-            // Turn off tracking so remote physics/transforms don't fight local interactions
-            if (grabInteractable != null)
+            else
             {
-                grabInteractable.trackPosition = false;
-                grabInteractable.trackRotation = false;
+                Debug.Log($"[NetXrInteractable] Authority lost for ID: {base.ObjectId}. Deactivating XRI tracking.");
+
+                if (grabInteractable != null)
+                {
+                    grabInteractable.trackPosition = false;
+                    grabInteractable.trackRotation = false;
+                }
             }
         }
 
@@ -90,18 +89,14 @@ namespace BugFreeProductions.VRClassroom
 
         protected virtual void RequestAuthority()
         {
-            if (isServerOnly) return; 
+            if (base.IsServerOnly) return; 
 
-            if (isServer)
+            if (base.IsServer)
             {
-                if (netIdentity.connectionToClient != null)
-                {
-                    netIdentity.RemoveClientAuthority();
-                }
-                netIdentity.AssignClientAuthority(NetworkServer.localConnection);
+                base.NetworkObject.GiveOwnership(base.LocalConnection);
                 Debug.Log($"[NetXrInteractable] Host grabbed object. Assigned local authority.");
             }
-            else if (isClient && !isOwned)
+            else if (base.IsClient && !base.IsOwner)
             {
                 CmdRequestAuthority();
             }
@@ -109,38 +104,44 @@ namespace BugFreeProductions.VRClassroom
 
         protected virtual void RemoveAuthority()
         {
-            if (isServer) return;
+            if (base.IsServerOnly) return;
 
-            if (isClient && isOwned)
+            if (base.IsServer)
+            {
+                base.NetworkObject.RemoveOwnership();
+                Debug.Log($"[NetXrInteractable] Host released object. Removed authority.");
+                return;
+            }
+
+            if (base.IsClient && base.IsOwner)
             {
                 CmdRemoveAuthority();
             }
         }
         
-        [Command(requiresAuthority = false)]        
-        protected virtual void CmdRequestAuthority(NetworkConnectionToClient sender = null)
+        [ServerRpc(RequireOwnership = false)]
+        protected virtual void CmdRequestAuthority(NetworkConnection sender = null)
         {
-            NetworkConnectionToClient currentOwner = netIdentity.connectionToClient;
-            NetworkConnectionToClient requester = sender; // Use the auto-injected sender parameter
+            NetworkConnection currentOwner = base.Owner;
+            NetworkConnection requester = sender;
 
             if (currentOwner == null)
             {
-                netIdentity.AssignClientAuthority(requester);
+                base.NetworkObject.GiveOwnership(requester);
                 Debug.Log($"[NetXrInteractable] Assigned unowned object {gameObject.name} to connection: {requester}");
             }
             else if (currentOwner != requester)
             {
-                netIdentity.RemoveClientAuthority();
-                netIdentity.AssignClientAuthority(requester);
+                base.NetworkObject.GiveOwnership(requester);
                 Debug.Log($"[NetXrInteractable] Stole authority of {gameObject.name} from connection {currentOwner} and gave to: {requester}");
             }
         }
 
-        [Command]
-        protected virtual void CmdRemoveAuthority(NetworkConnectionToClient sender = null)
+        [ServerRpc]
+        protected virtual void CmdRemoveAuthority(NetworkConnection sender = null)
         {
-            NetworkConnectionToClient currentOwner = netIdentity.connectionToClient;
-            NetworkConnectionToClient requester = sender;
+            NetworkConnection currentOwner = base.Owner;
+            NetworkConnection requester = sender;
 
             if (currentOwner == null) return;
 
@@ -150,7 +151,7 @@ namespace BugFreeProductions.VRClassroom
                 return;
             }
 
-            netIdentity.RemoveClientAuthority();
+            base.NetworkObject.RemoveOwnership();
             Debug.Log($"[NetXrInteractable] Reclaimed authority over {gameObject.name} from client {requester}.");
         }
 

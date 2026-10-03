@@ -1,47 +1,65 @@
 // Created By   :   Isaac
 // Created      :   5/14/2026
 // Gemini Assisted
+// Converted To :   FishNet on 10/3/2026
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
 
-
-
-public class VRPlayerSetup : NetworkBehaviour
+namespace BugFreeProductions.VRClassroom
 {
-    [SerializeField] private GameObject localVRRig;  // Camera, tracking, etc.
-    [SerializeField] private GameObject remoteAvatar; // Visuals for other players
-
-    // Mirror fires this strictly on the client that OWNS this player object
-    public override void OnStartLocalPlayer()
+    /// <summary>
+    /// Manages the activation of the local VR rig and remote avatar visuals 
+    /// based on FishNet object ownership.
+    /// </summary>
+    public class VRPlayerSetup : NetworkBehaviour
     {
-        base.OnStartLocalPlayer();
-        SetupLocalPlayer();
-    }
+        #region Vars
+        [Tooltip("Local VR rig containing the camera, tracking nodes, and local controllers.")]
+        [SerializeField] private GameObject localVRRig; 
 
-    // Mirror fires this on ALL clients when any player object wakes up/spawns
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-        
-        // If it's NOT the local player, set up the remote visuals
-        if (!isLocalPlayer)
+        [Tooltip("Remote avatar visuals displayed to other connected clients.")]
+        [SerializeField] private GameObject remoteAvatar; 
+        #endregion Vars
+
+        #region Methods
+        /// <summary>
+        /// FishNet lifecycle method called on all clients when this network object initializes.
+        /// </summary>
+        public override void OnStartClient()
         {
-            SetupRemotePlayer();
+            base.OnStartClient();
+            
+            // Check if the local client owns this player instance (FishNet equivalent to Mirror's isLocalPlayer)
+            if (base.IsOwner)
+            {
+                SetupLocalPlayer();
+            }
+            else
+            {
+                SetupRemotePlayer();
+            }
         }
-    }
 
-    private void SetupLocalPlayer()
-    {
-        localVRRig.SetActive(true);
-        remoteAvatar.SetActive(false);
-    }
+        /// <summary>
+        /// Enables local tracking/camera rig and hides the remote avatar for the local player.
+        /// </summary>
+        private void SetupLocalPlayer()
+        {
+            if (localVRRig != null) localVRRig.SetActive(true);
+            if (remoteAvatar != null) remoteAvatar.SetActive(false);
+        }
 
-    private void SetupRemotePlayer()
-    {
-        localVRRig.SetActive(false);
-        remoteAvatar.SetActive(true);
+        /// <summary>
+        /// Disables the local tracking rig and enables remote avatar visuals for other players.
+        /// </summary>
+        private void SetupRemotePlayer()
+        {
+            if (localVRRig != null) localVRRig.SetActive(false);
+            if (remoteAvatar != null) remoteAvatar.SetActive(true);
+        }
+        #endregion Methods
     }
 }

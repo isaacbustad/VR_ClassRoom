@@ -19,7 +19,7 @@ namespace BugFreeProductions.VRClassroom
         #region Methods
         public override void StartRecordingSession()
         {
-            if (NetGuestPermissionManager.Instance.isServer)
+            if (NetGuestPermissionManager.Instance.IsServer)
             {
                 base.StartRecordingSession();
                 return;
@@ -34,7 +34,7 @@ namespace BugFreeProductions.VRClassroom
 
         protected virtual void OnPermissionsChanged(NetGuestPermission aNetGuestPermission)
         {
-            if(NetGuestPermissionManager.Instance.isServer)
+            if(NetGuestPermissionManager.Instance.IsServer)
             {
                 return;
             }
