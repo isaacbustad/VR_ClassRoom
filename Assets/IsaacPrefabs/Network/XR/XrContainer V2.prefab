@@ -1528,6 +1528,7 @@ GameObject:
   - component: {fileID: 128002731166167834}
   - component: {fileID: 2532206444782648033}
   - component: {fileID: 2941930695568006187}
+  - component: {fileID: 4731112941524607991}
   m_Layer: 0
   m_Name: XrContainer V2
   m_TagString: Untagged
@@ -1656,6 +1657,22 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &4731112941524607991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101036858622425069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafd06be765cefc4586e3ba5fbea4bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::BugFreeProductions.Networking.NetworkOrientation
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2532206444782648033}
+  _networkObjectCache: {fileID: 0}
+  threshold: 0.001
 --- !u!1 &6381789613821486099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1686,7 @@ GameObject:
   - component: {fileID: 9100457785019023520}
   - component: {fileID: 6475453897503613415}
   - component: {fileID: 6589063002575837726}
+  - component: {fileID: 1382377855782219691}
   m_Layer: 0
   m_Name: Head Cube
   m_TagString: Untagged
@@ -1810,6 +1828,22 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &1382377855782219691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381789613821486099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafd06be765cefc4586e3ba5fbea4bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::BugFreeProductions.Networking.NetworkOrientation
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2532206444782648033}
+  _networkObjectCache: {fileID: 0}
+  threshold: 0.001
 --- !u!1 &6689302347644141213
 GameObject:
   m_ObjectHideFlags: 0

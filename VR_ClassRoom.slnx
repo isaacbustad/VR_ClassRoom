@@ -1,9 +1,9 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp-firstpass.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="FishNet.Runtime.csproj" />
-  <Project Path="SynapseSocket.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="FishNet.Codegen.Cecil.csproj" />
+  <Project Path="SynapseSocket.csproj" />
   <Project Path="GameKit.Dependencies.csproj" />
   <Project Path="Unity.FishNet.Codegen.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj" />
