@@ -24,7 +24,7 @@ namespace BugFreeProductions.VRClassroom
         #region Unity Event Methods
         protected virtual void OnEnable()
         {
-            Debug.Log($"Copilot ItemMementoRecorder.OnEnable: subscribing recorder, current instanceID={instanceID}");
+            //Debug.Log($"ItemMementoRecorder.OnEnable: subscribing recorder, current instanceID={instanceID}");
             // subscribe on enable to ensure object mementos are collected
             Subscribe();
 
@@ -33,7 +33,7 @@ namespace BugFreeProductions.VRClassroom
         protected virtual void OnDestroy()
         {
             // Record a memento stating the object was destroyed
-            Debug.Log($"Copilot ItemMementoRecorder.OnDestroy: recorder instanceID={instanceID}");
+            //Debug.Log($"ItemMementoRecorder.OnDestroy: recorder instanceID={instanceID}");
             RecordMemento(true);
 
             // remove from the subscription before destruction
