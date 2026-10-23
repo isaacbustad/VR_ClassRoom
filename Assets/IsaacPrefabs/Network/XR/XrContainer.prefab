@@ -191,9 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -237,9 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b07c6e5ac5ab84aad1c7bdaa440234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   trackedTf: {fileID: 6206204010543448519}
 --- !u!1 &709916612341744860
 GameObject:
@@ -1681,9 +1681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a84ade2a06af2b418a4420dd1cd0350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   toDisableLst:
   - {fileID: 6418722504461298389}
   - {fileID: 148074036523536315}
@@ -1981,9 +1981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -2045,22 +2045,30 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 65535
+  <PrefabId>k__BackingField: 3
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 1152494607294982768
   SceneId: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    Scale: {x: 0, y: 0, z: 0}
-    IsValid: 0
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+    IsValid: 1
   <IsNested>k__BackingField: 0
   WasActiveDuringEdit: 0
   WasActiveDuringEdit_Set1: 1
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours: []
+  NetworkBehaviours:
+  - {fileID: 7373439720607330464}
+  - {fileID: 3249378409877374564}
+  - {fileID: 8154984458907939182}
+  - {fileID: 6475453897503613415}
+  - {fileID: 213111240963599811}
+  - {fileID: 2102615134286863008}
+  - {fileID: 1910382322450205003}
+  - {fileID: 39817552003285022}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -2071,7 +2079,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: 0
+  _initializedTimestamp: -8584090767177718468
 --- !u!1 &6381789613821486099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,9 +2184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -2222,9 +2230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b07c6e5ac5ab84aad1c7bdaa440234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   trackedTf: {fileID: 2098579027137247024}
 --- !u!1 &6418722504461298389
 GameObject:
@@ -2460,9 +2468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -2506,9 +2514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b07c6e5ac5ab84aad1c7bdaa440234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 7
   _addedNetworkObject: {fileID: 2722873235863435921}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2722873235863435921}
   trackedTf: {fileID: 3448936369443560203}
 --- !u!1 &7185785145849111949
 GameObject:

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2501148663431443087}
   - component: {fileID: 1750069804166283790}
   - component: {fileID: 2102615134286863008}
-  - component: {fileID: 4046168964294958133}
+  - component: {fileID: 8503087886796300321}
   m_Layer: 0
   m_Name: Left Hand Cube
   m_TagString: Untagged
@@ -108,7 +108,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2532206444782648033}
   _networkObjectCache: {fileID: 0}
   trackedTf: {fileID: 6206204010543448519}
---- !u!114 &4046168964294958133
+--- !u!114 &8503087886796300321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,43 +117,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 676702350024659659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Script: {fileID: 11500000, guid: bafd06be765cefc4586e3ba5fbea4bb8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::BugFreeProductions.Networking.NetworkOrientation
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 2532206444782648033}
   _networkObjectCache: {fileID: 0}
-  _componentConfiguration: 0
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.001
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
+  threshold: 0.001
 --- !u!1 &709916612341744860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1497,6 @@ GameObject:
   m_Component:
   - component: {fileID: 128002731166167834}
   - component: {fileID: 2532206444782648033}
-  - component: {fileID: 2941930695568006187}
   - component: {fileID: 4731112941524607991}
   m_Layer: 0
   m_Name: XrContainer V2
@@ -1594,7 +1563,7 @@ MonoBehaviour:
     Scale: {x: 0, y: 0, z: 0}
     IsValid: 0
   <IsNested>k__BackingField: 0
-  WasActiveDuringEdit: 0
+  WasActiveDuringEdit: 1
   WasActiveDuringEdit_Set1: 1
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
@@ -1611,52 +1580,6 @@ MonoBehaviour:
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
   _initializedTimestamp: 0
---- !u!114 &2941930695568006187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6101036858622425069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 2532206444782648033}
-  _networkObjectCache: {fileID: 0}
-  _componentConfiguration: 0
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.001
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
 --- !u!114 &4731112941524607991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,7 +1608,6 @@ GameObject:
   - component: {fileID: 8147514059929322110}
   - component: {fileID: 9100457785019023520}
   - component: {fileID: 6475453897503613415}
-  - component: {fileID: 6589063002575837726}
   - component: {fileID: 1382377855782219691}
   m_Layer: 0
   m_Name: Head Cube
@@ -1782,52 +1704,6 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2532206444782648033}
   _networkObjectCache: {fileID: 0}
   trackedTf: {fileID: 2098579027137247024}
---- !u!114 &6589063002575837726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6381789613821486099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 2532206444782648033}
-  _networkObjectCache: {fileID: 0}
-  _componentConfiguration: 0
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.001
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
 --- !u!114 &1382377855782219691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,8 +1731,8 @@ GameObject:
   - component: {fileID: 4871720848521692320}
   - component: {fileID: 5091982349674258628}
   - component: {fileID: 81837654501366788}
-  - component: {fileID: 1910382322450205003}
   - component: {fileID: 39817552003285022}
+  - component: {fileID: 8911837309712902922}
   m_Layer: 0
   m_Name: Right Hand Cube
   m_TagString: Untagged
@@ -1937,52 +1813,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1910382322450205003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6689302347644141213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 2532206444782648033}
-  _networkObjectCache: {fileID: 0}
-  _componentConfiguration: 0
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.001
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
 --- !u!114 &39817552003285022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,6 +1829,22 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2532206444782648033}
   _networkObjectCache: {fileID: 0}
   trackedTf: {fileID: 3448936369443560203}
+--- !u!114 &8911837309712902922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689302347644141213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafd06be765cefc4586e3ba5fbea4bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::BugFreeProductions.Networking.NetworkOrientation
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2532206444782648033}
+  _networkObjectCache: {fileID: 0}
+  threshold: 0.001
 --- !u!1 &7185785145849111949
 GameObject:
   m_ObjectHideFlags: 0

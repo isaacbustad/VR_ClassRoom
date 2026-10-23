@@ -111,9 +111,9 @@ namespace BugFreeProductions.VRClassroom
             {
                 itemMementoRecorders.Add(aIMR);
                 aIMR.InstanceID = nextMementoID;
-                Debug.Log($"Copilot MementoSessionRecorder.AddSubscriber: assigned recorder InstanceID={nextMementoID} to {aIMR.gameObject.name}");
+                // Debug.Log($" MementoSessionRecorder.AddSubscriber: assigned recorder InstanceID={nextMementoID} to {aIMR.gameObject.name}");
                 nextMementoID++;
-                Debug.Log($"Copilot MementoSessionRecorder.AddSubscriber: next available ID={nextMementoID}");
+                // Debug.Log($" MementoSessionRecorder.AddSubscriber: next available ID={nextMementoID}");
             }
         }
 
