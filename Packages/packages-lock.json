@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "com.bugfreeproductionsfishnetlibrary": {
+      "version": "file:../../SharedPackages/BugFreeProductionsFishNetLibrary",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.bugfreeproductionslibrary": {
+      "version": "file:../../SharedPackages/BugFreeProductionsLibrary",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.bugfreeproductionsvrlibrary": {
+      "version": "file:../../SharedPackages/BugFreeProductionsVRLibrary",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.meta.xr.mrutilitykit": {
       "version": "72.0.0",
       "depth": 1,
